@@ -7,50 +7,73 @@
 <style>
 body{
   margin:0;
-  background:#0d0d1a;
-  color:white;
+  background:#0b0b1a;
   font-family:sans-serif;
-  text-align:center;
+  color:white;
 }
 
 .header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   padding:15px;
-  background:#14142b;
+  background:#12122a;
+}
+
+.header h2{
+  font-size:18px;
+}
+
+.container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:10px;
 }
 
 .card{
   background:#1a1a2e;
-  margin:20px;
-  padding:20px;
   border-radius:15px;
+  padding:10px;
+  box-shadow:0 0 10px #000;
 }
 
-img{
-  width:80%;
-  border-radius:15px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-img:hover{
-  transform:scale(1.05);
-}
-
-/* hidden box */
-#info{
-  display:none;
-  margin-top:20px;
-  background:#111;
-  padding:15px;
+.card img{
+  width:100%;
   border-radius:10px;
 }
 
-.price{
-  margin:5px;
-  padding:10px;
-  background:#222;
-  border-radius:8px;
+.title{
+  font-weight:bold;
+  margin-top:8px;
 }
+
+.tag{
+  font-size:12px;
+  color:#aaa;
+}
+
+.price{
+  color:#00ffcc;
+  margin-top:5px;
+}
+
+.btns{
+  display:flex;
+  gap:5px;
+  margin-top:10px;
+}
+
+.btn{
+  flex:1;
+  padding:8px;
+  border:none;
+  border-radius:8px;
+  color:white;
+}
+
+.demo{background:red;}
+.buy{background:#7a5cff;}
 </style>
 
 </head>
@@ -58,64 +81,46 @@ img:hover{
 <body>
 
 <div class="header">
-<h2>🔥 MOHASIN X SHOP 🔥</h2>
+<h2>🔥 MOHASIN X SHOP</h2>
 </div>
 
+<div class="container">
+
+<!-- CARD 1 -->
 <div class="card">
+<img src="https://i.ibb.co/0y7s9YB/ff.jpg">
+<div class="title">DRIP CLIENT</div>
+<div class="tag">Freefire panel</div>
+<div class="price">From 100 TK</div>
 
-<!-- তোমার image -->
-<img src="logo.png" onclick="showInfo()">
+<div class="btns">
+<button class="btn demo">Demo</button>
+<button class="btn buy" onclick="order('DRIP CLIENT')">Buy</button>
+</div>
+</div>
 
-<h3>👆 Click Image to See Price</h3>
+<!-- CARD 2 -->
+<div class="card">
+<img src="https://i.ibb.co/q7G5X9C/carro.jpg">
+<div class="title">CARROM HACK</div>
+<div class="tag">Auto aim panel</div>
+<div class="price">From 200 TK</div>
 
-<div id="info">
-
-<h3>💎 DRIP CLIENT PRICE</h3>
-
-<div class="price">1 DAY - 100TK</div>
-<div class="price">3 DAY - 210TK</div>
-<div class="price">7 DAY - 410TK</div>
-<div class="price">15 DAY - 720TK</div>
-<div class="price">30 DAY - 1040TK</div>
-
-<h3>💳 Payment (bKash)</h3>
-<p>📱 01772554345</p>
-
-<button onclick="order()">🛒 Order Now (WhatsApp)</button>
-
+<div class="btns">
+<button class="btn demo">Demo</button>
+<button class="btn buy" onclick="order('CARROM HACK')">Buy</button>
+</div>
 </div>
 
 </div>
 
 <script>
+function order(name){
+let number="8801772554345";
+let msg="MOHASIN X SHOP%0AProduct: "+name;
 
-/* show / hide */
-function showInfo(){
-let box = document.getElementById("info");
-
-if(box.style.display=="block"){
-  box.style.display="none";
-}else{
-  box.style.display="block";
+window.open("https://wa.me/"+number+"?text="+msg);
 }
-}
-
-/* WhatsApp */
-function order(){
-
-let name = prompt("Your Name:");
-let plan = prompt("Enter Plan (1day / 3day etc):");
-
-let number = "8801772554345";
-
-let msg = "🔥 MOHASIN X SHOP 🔥\nName: "+name+"\nPlan: "+plan;
-
-let url = "https://wa.me/"+number+"?text="+encodeURIComponent(msg);
-
-window.open(url);
-
-}
-
 </script>
 
 </body>
