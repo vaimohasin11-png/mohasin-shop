@@ -4,35 +4,29 @@
 <title>MOHASIN X SHOP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Login -->
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-
 <style>
-body{background:#0d0d1a;color:white;font-family:sans-serif;margin:0;}
-.header{padding:15px;text-align:center;background:#14142b;}
-.card{background:#1a1a2e;margin:15px;padding:10px;border-radius:15px;}
-.card img{width:100%;border-radius:10px;}
-.btn{padding:10px;margin-top:10px;border:none;border-radius:8px;width:100%;color:white;}
-.pricebtn{background:#7a5cff;}
-.buy{background:#ff00aa;}
+body{margin:0;background:#0d0d1a;color:white;font-family:sans-serif;text-align:center;}
+.header{padding:15px;background:#14142b;}
+.card{background:#1a1a2e;margin:15px;padding:15px;border-radius:15px;}
+.btn{padding:12px;margin:6px;border:none;border-radius:10px;color:white;width:90%;}
+.login{background:#4285F4;}
 .deposit{background:#00cc66;}
+.buy{background:#ff00aa;}
+.admin{background:#ffaa00;}
+.pricebtn{background:#7a5cff;}
 .list{display:none;margin-top:10px;}
-.item{background:#111;margin:5px 0;padding:10px;border-radius:8px;display:flex;justify-content:space-between;}
+.item{background:#111;margin:6px;padding:10px;border-radius:8px;}
+img{width:90%;border-radius:12px;}
 </style>
+
 </head>
 
 <body>
 
 <div class="header">
 <h2>🔥 MOHASIN X SHOP 🔥</h2>
-
-<!-- Google Login -->
-<div id="g_id_onload"
- data-client_id="YOUR_CLIENT_ID"
- data-callback="handleCredentialResponse">
-</div>
-<div class="g_id_signin"></div>
-
+<button class="btn login" onclick="login()">🔐 Login with Gmail</button>
+<p id="user"></p>
 </div>
 
 <div class="card">
@@ -55,40 +49,99 @@ body{background:#0d0d1a;color:white;font-family:sans-serif;margin:0;}
 
 </div>
 
+<button class="btn admin" onclick="loadAdmin()">📊 Admin Panel</button>
+
+<div id="adminPanel"></div>
+
+<!-- 🔥 FIREBASE FULL SYSTEM -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getFirestore, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAZxhdeUPoOEpNz3CD4A6yOrwD0lTGgrw4",
+  authDomain: "mohasin-shop-965d2.firebaseapp.com",
+  projectId: "mohasin-shop-965d2",
+  storageBucket: "mohasin-shop-965d2.firebasestorage.app",
+  messagingSenderId: "820549153329",
+  appId: "1:820549153329:web:0752cb58a547db7ed75b10",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+const db = getFirestore();
+
+let currentUser = null;
+
+/* 🔐 LOGIN */
+window.login = function(){
+  signInWithPopup(auth, provider)
+  .then(result=>{
+    currentUser = result.user;
+    document.getElementById("user").innerText =
+      "👤 " + currentUser.email;
+  });
+}
+
+/* 💳 DEPOSIT */
+window.deposit = async function(){
+  if(!currentUser){
+    alert("Login first ❌");
+    return;
+  }
+
+  let amount = prompt("Enter amount:");
+
+  await addDoc(collection(db, "deposit"), {
+    amount: amount,
+    user: currentUser.email,
+    time: new Date()
+  });
+
+  alert("Deposit Saved ✅");
+}
+
+/* 📊 ADMIN PANEL */
+window.loadAdmin = async function(){
+
+  if(!currentUser){
+    alert("Login first ❌");
+    return;
+  }
+
+  if(currentUser.email !== "vaimohasin11@gmail.com"){
+    alert("Access Denied ❌");
+    return;
+  }
+
+  let data = await getDocs(collection(db, "deposit"));
+
+  let html = "<h3>📊 Deposits</h3>";
+
+  data.forEach(doc=>{
+    let d = doc.data();
+    html += `<p>👤 ${d.user} | 💰 ${d.amount}</p>`;
+  });
+
+  document.getElementById("adminPanel").innerHTML = html;
+}
+
+</script>
+
+<!-- NORMAL JS -->
 <script>
-// Toggle Price List
 function toggle(){
 let x=document.getElementById("list");
 x.style.display = x.style.display=="block" ? "none" : "block";
 }
 
-// WhatsApp Order
 function order(plan){
 let number="8801772554345";
-
-let msg="🔥 MOHASIN X SHOP 🔥%0A%0A"+
-"Panel: DRIP CLIENT%0A"+
-"Plan: "+plan+"%0A%0A"+
-"bKash: 01772554345%0AConfirm Order";
-
+let msg="🔥 MOHASIN X SHOP 🔥%0A"+plan;
 window.open("https://wa.me/"+number+"?text="+msg);
-}
-
-// Deposit
-function deposit(){
-let number="8801772554345";
-
-let msg="💳 DEPOSIT REQUEST%0A%0A"+
-"bKash Number: 01772554345%0A"+
-"Amount: ___%0A%0A"+
-"Send payment screenshot";
-
-window.open("https://wa.me/"+number+"?text="+msg);
-}
-
-// Google Login
-function handleCredentialResponse(response){
-alert("Login Success ✅");
 }
 </script>
 
