@@ -5,99 +5,118 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{background:black;color:white;font-family:sans-serif;text-align:center;}
-.btn{padding:12px;margin:5px;background:#ff00aa;color:white;border:none;border-radius:8px;}
-input{padding:10px;margin:5px;}
+body{
+  margin:0;
+  background:#0d0d1a;
+  font-family:sans-serif;
+  color:white;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px;
+  background:#14142b;
+}
+
+.header h2{
+  color:#fff;
+}
+
+.container{
+  padding:10px;
+}
+
+.card{
+  background:#1a1a2e;
+  border-radius:15px;
+  padding:10px;
+  margin-bottom:15px;
+  box-shadow:0 0 10px #000;
+}
+
+.card img{
+  width:100%;
+  border-radius:10px;
+}
+
+.title{
+  font-size:18px;
+  margin-top:8px;
+}
+
+.price{
+  color:#00ff99;
+  margin-top:5px;
+}
+
+.btn{
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  width:48%;
+}
+
+.buy{
+  background:#7a5cff;
+  color:white;
+}
+
+.demo{
+  background:#ff4444;
+  color:white;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+}
 </style>
+
 </head>
 
 <body>
 
-<h1>🔥 MOHASIN X SHOP 🔥</h1>
-
-<div id="shop">
-<h2>💎 DRIP CLIENT PANEL</h2>
-
-<p id="p1"></p>
-<p id="p2"></p>
-<p id="p3"></p>
-<p id="p4"></p>
-<p id="p5"></p>
-
-<button class="btn" onclick="order()">Order via WhatsApp</button>
+<div class="header">
+<h2>🔥 MOHASIN X SHOP</h2>
 </div>
 
-<hr>
+<div class="container">
 
-<h3>🔐 Admin Login</h3>
+<!-- CARD 1 -->
+<div class="card">
+<img src="logo.png">
+<div class="title">💎 DRIP CLIENT PANEL</div>
+<div class="price">From 100 TK</div>
 
-<input id="user" placeholder="Username">
-<input id="pass" type="password" placeholder="Password">
-<button class="btn" onclick="login()">Login</button>
+<div class="row">
+<button class="btn demo">Demo</button>
+<button class="btn buy" onclick="buy()">Buy</button>
+</div>
+</div>
 
-<div id="admin" style="display:none;">
-<h3>⚙️ Change Price</h3>
+<!-- CARD 2 -->
+<div class="card">
+<img src="logo.png">
+<div class="title">⚡ VIP PANEL</div>
+<div class="price">From 200 TK</div>
 
-<input id="a1" placeholder="1 Day Price">
-<input id="a2" placeholder="3 Day Price">
-<input id="a3" placeholder="7 Day Price">
-<input id="a4" placeholder="15 Day Price">
-<input id="a5" placeholder="30 Day Price">
+<div class="row">
+<button class="btn demo">Demo</button>
+<button class="btn buy" onclick="buy()">Buy</button>
+</div>
+</div>
 
-<button class="btn" onclick="save()">Save</button>
 </div>
 
 <script>
-// default price
-let price = JSON.parse(localStorage.getItem("price")) || {
-p1:"1 DAY - 100TK",
-p2:"3 DAY - 200TK",
-p3:"7 DAY - 400TK",
-p4:"15 DAY - 700TK",
-p5:"30 DAY - 1000TK"
-};
-
-function load(){
-document.getElementById("p1").innerText = price.p1;
-document.getElementById("p2").innerText = price.p2;
-document.getElementById("p3").innerText = price.p3;
-document.getElementById("p4").innerText = price.p4;
-document.getElementById("p5").innerText = price.p5;
-}
-load();
-
-// login
-function login(){
-let u=document.getElementById("user").value;
-let p=document.getElementById("pass").value;
-
-if(u=="admin" && p=="1234"){
-document.getElementById("admin").style.display="block";
-alert("Login Success");
-}else{
-alert("Wrong login");
-}
-}
-
-// save new price
-function save(){
-price={
-p1:document.getElementById("a1").value,
-p2:document.getElementById("a2").value,
-p3:document.getElementById("a3").value,
-p4:document.getElementById("a4").value,
-p5:document.getElementById("a5").value
-};
-
-localStorage.setItem("price", JSON.stringify(price));
-load();
-alert("Saved!");
-}
-
-// WhatsApp
-function order(){
+function buy(){
 let number="8801772554345";
-let msg="MOHASIN X SHOP ORDER%0A"+price.p1+"%0A"+price.p2+"%0A"+price.p3;
+
+let msg="MOHASIN X SHOP ORDER%0APlease send panel details";
+
 window.open("https://wa.me/"+number+"?text="+msg);
 }
 </script>
