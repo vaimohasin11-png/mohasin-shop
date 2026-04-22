@@ -7,94 +7,162 @@
 <style>
 body{
   margin:0;
-  background:#0b0b1a;
+  background:#050512;
   font-family:sans-serif;
   color:white;
 }
 
 .header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  text-align:center;
   padding:15px;
-  background:#12122a;
-}
-
-.header h2{
-  font-size:18px;
-}
-
-.container{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  padding:10px;
+  background:#0d0d2a;
+  font-size:20px;
+  font-weight:bold;
 }
 
 .card{
-  background:#1a1a2e;
-  border-radius:15px;
-  padding:10px;
-  box-shadow:0 0 10px #000;
+  margin:15px;
+  padding:15px;
+  border-radius:20px;
+  background:linear-gradient(145deg,#0f0f2a,#050512);
+  box-shadow:0 0 20px #ff00ff55;
+  text-align:center;
 }
 
 .card img{
-  width:100%;
-  border-radius:10px;
+  width:220px;
 }
 
 .title{
+  font-size:22px;
+  margin-top:10px;
   font-weight:bold;
-  margin-top:8px;
 }
 
-.tag{
-  font-size:12px;
+.sub{
   color:#aaa;
+  font-size:14px;
+}
+
+.priceBox{
+  margin-top:20px;
+  background:#0d0d2a;
+  border-radius:15px;
+  padding:10px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+  border-bottom:1px solid #333;
+}
+
+.item:last-child{border:none;}
+
+.plan{
+  font-weight:bold;
 }
 
 .price{
-  color:#00ffcc;
-  margin-top:5px;
+  color:#00ff88;
 }
 
-.btns{
-  display:flex;
-  gap:5px;
-  margin-top:10px;
-}
-
-.btn{
-  flex:1;
-  padding:8px;
+.buy{
+  background:#ff00ff;
   border:none;
+  padding:6px 10px;
   border-radius:8px;
   color:white;
 }
 
-.demo{background:red;}
-.buy{background:#7a5cff;}
-</style>
+.footer{
+  margin:15px;
+  display:flex;
+  gap:10px;
+}
 
+.btn{
+  flex:1;
+  padding:15px;
+  border-radius:12px;
+  border:none;
+  font-weight:bold;
+}
+
+.deposit{background:#00aa55;}
+.balance{background:#0055aa;}
+
+</style>
 </head>
 
 <body>
 
-<div class="header">
-<h2>🔥 MOHASIN X SHOP</h2>
+<div class="header">🔥 MOHASIN X SHOP 🔥</div>
+
+<div class="card">
+
+<!-- 🔥 তোমার logo -->
+<img src="drip.jpg">
+
+<div class="title">DRIP CLIENT</div>
+<div class="sub">Best Free Fire Panel</div>
+
+<div class="priceBox">
+
+<div class="item">
+<div class="plan">1 DAY</div>
+<div class="price">100 TK</div>
+<button class="buy" onclick="order('1 DAY - 100TK')">Buy</button>
 </div>
 
-<div class="container">
+<div class="item">
+<div class="plan">3 DAY</div>
+<div class="price">210 TK</div>
+<button class="buy" onclick="order('3 DAY - 210TK')">Buy</button>
+</div>
 
-<!-- CARD 1 -->
-<div class="card">
-<img src="https://i.ibb.co/0y7s9YB/ff.jpg">
-<div class="title">DRIP CLIENT</div>
-<div class="tag">Freefire panel</div>
-<div class="price">From 100 TK</div>
+<div class="item">
+<div class="plan">7 DAY</div>
+<div class="price">410 TK</div>
+<button class="buy" onclick="order('7 DAY - 410TK')">Buy</button>
+</div>
 
-<div class="btns">
-<button class="btn demo">Demo</button>
+<div class="item">
+<div class="plan">15 DAY</div>
+<div class="price">720 TK</div>
+<button class="buy" onclick="order('15 DAY - 720TK')">Buy</button>
+</div>
+
+<div class="item">
+<div class="plan">30 DAY</div>
+<div class="price">1040 TK</div>
+<button class="buy" onclick="order('30 DAY - 1040TK')">Buy</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+<button class="btn deposit">💳 Deposit</button>
+<button class="btn balance">💰 Balance</button>
+</div>
+
+<script>
+function order(plan){
+let number="8801772554345";
+let msg="🔥 MOHASIN X SHOP 🔥\nOrder: "+plan;
+
+let url="https://wa.me/"+number+"?text="+encodeURIComponent(msg);
+
+window.open(url,"_blank");
+}
+</script>
+
+</body>
+  </html><button class="btn demo">Demo</button>
 <button class="btn buy" onclick="order('DRIP CLIENT')">Buy</button>
 </div>
 </div>
