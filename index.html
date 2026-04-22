@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MOHASIN X SHOP</title>
+
+<style>
+body{
+  background:black;
+  color:white;
+  font-family:sans-serif;
+  text-align:center;
+}
+
+.box{
+  margin-top:30px;
+}
+
+img{
+  width:200px;
+}
+
+.btn{
+  display:block;
+  margin:10px auto;
+  padding:15px;
+  width:260px;
+  background:#ff00aa;
+  color:white;
+  border:none;
+  font-size:18px;
+  border-radius:10px;
+}
+
+.btn:hover{
+  background:#ff33cc;
+}
+</style>
+
+</head>
+<body>
+
+<div class="box">
+
+<!-- LOGO -->
+<img src="mohasindrip.jpg">
+
+<h1>🔥 MOHASIN X SHOP 🔥</h1>
+
+<h2>💎 DRIP CLIENT PANEL 💎</h2>
+
+<p>Choose Your Plan 👇</p>
+
+<button class="btn" onclick="order('1 DAY - 100TK')">1 DAY - 100TK</button>
+<button class="btn" onclick="order('3 DAY - 200TK')">3 DAY - 200TK</button>
+<button class="btn" onclick="order('7 DAY - 400TK')">7 DAY - 400TK</button>
+<button class="btn" onclick="order('15 DAY - 700TK')">15 DAY - 700TK</button>
+<button class="btn" onclick="order('30 DAY - 1000TK')">30 DAY - 1000TK</button>
+
+</div>
+
+<script>
+function order(plan){
+
+let number = "8801772554345";
+
+let message = 
+"🔥 MOHASIN X SHOP ORDER 🔥%0A%0A" +
+"Panel: DRIP CLIENT%0A" +
+"Plan: " + plan + "%0A" +
+"Price: " + plan + "%0A%0A" +
+"Payment (bKash): 01772554345%0A%0A" +
+"Please confirm my order ✅";
+
+let url = "https://wa.me/" + number + "?text=" + message;
+
+window.open(url, "_blank");
+
+}
+</script>
+
+</body>
+</html>
