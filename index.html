@@ -2,79 +2,103 @@
 <html>
 <head>
 <title>MOHASIN X SHOP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  background:black;
-  color:white;
-  font-family:sans-serif;
-  text-align:center;
-}
-
-.box{
-  margin-top:30px;
-}
-
-img{
-  width:200px;
-}
-
-.btn{
-  display:block;
-  margin:10px auto;
-  padding:15px;
-  width:260px;
-  background:#ff00aa;
-  color:white;
-  border:none;
-  font-size:18px;
-  border-radius:10px;
-}
-
-.btn:hover{
-  background:#ff33cc;
-}
+body{background:black;color:white;font-family:sans-serif;text-align:center;}
+.btn{padding:12px;margin:5px;background:#ff00aa;color:white;border:none;border-radius:8px;}
+input{padding:10px;margin:5px;}
 </style>
-
 </head>
+
 <body>
-
-<div class="box">
-
-<!-- LOGO -->
-<img src="mohasindrip.jpg">
 
 <h1>🔥 MOHASIN X SHOP 🔥</h1>
 
-<h2>💎 DRIP CLIENT PANEL 💎</h2>
+<div id="shop">
+<h2>💎 DRIP CLIENT PANEL</h2>
 
-<p>Choose Your Plan 👇</p>
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>
+<p id="p4"></p>
+<p id="p5"></p>
 
-<button class="btn" onclick="order('1 DAY - 100TK')">1 DAY - 100TK</button>
-<button class="btn" onclick="order('3 DAY - 200TK')">3 DAY - 200TK</button>
-<button class="btn" onclick="order('7 DAY - 400TK')">7 DAY - 400TK</button>
-<button class="btn" onclick="order('15 DAY - 700TK')">15 DAY - 700TK</button>
-<button class="btn" onclick="order('30 DAY - 1000TK')">30 DAY - 1000TK</button>
+<button class="btn" onclick="order()">Order via WhatsApp</button>
+</div>
 
+<hr>
+
+<h3>🔐 Admin Login</h3>
+
+<input id="user" placeholder="Username">
+<input id="pass" type="password" placeholder="Password">
+<button class="btn" onclick="login()">Login</button>
+
+<div id="admin" style="display:none;">
+<h3>⚙️ Change Price</h3>
+
+<input id="a1" placeholder="1 Day Price">
+<input id="a2" placeholder="3 Day Price">
+<input id="a3" placeholder="7 Day Price">
+<input id="a4" placeholder="15 Day Price">
+<input id="a5" placeholder="30 Day Price">
+
+<button class="btn" onclick="save()">Save</button>
 </div>
 
 <script>
-function order(plan){
+// default price
+let price = JSON.parse(localStorage.getItem("price")) || {
+p1:"1 DAY - 100TK",
+p2:"3 DAY - 200TK",
+p3:"7 DAY - 400TK",
+p4:"15 DAY - 700TK",
+p5:"30 DAY - 1000TK"
+};
 
-let number = "8801772554345";
+function load(){
+document.getElementById("p1").innerText = price.p1;
+document.getElementById("p2").innerText = price.p2;
+document.getElementById("p3").innerText = price.p3;
+document.getElementById("p4").innerText = price.p4;
+document.getElementById("p5").innerText = price.p5;
+}
+load();
 
-let message = 
-"🔥 MOHASIN X SHOP ORDER 🔥%0A%0A" +
-"Panel: DRIP CLIENT%0A" +
-"Plan: " + plan + "%0A" +
-"Price: " + plan + "%0A%0A" +
-"Payment (bKash): 01772554345%0A%0A" +
-"Please confirm my order ✅";
+// login
+function login(){
+let u=document.getElementById("user").value;
+let p=document.getElementById("pass").value;
 
-let url = "https://wa.me/" + number + "?text=" + message;
+if(u=="admin" && p=="1234"){
+document.getElementById("admin").style.display="block";
+alert("Login Success");
+}else{
+alert("Wrong login");
+}
+}
 
-window.open(url, "_blank");
+// save new price
+function save(){
+price={
+p1:document.getElementById("a1").value,
+p2:document.getElementById("a2").value,
+p3:document.getElementById("a3").value,
+p4:document.getElementById("a4").value,
+p5:document.getElementById("a5").value
+};
 
+localStorage.setItem("price", JSON.stringify(price));
+load();
+alert("Saved!");
+}
+
+// WhatsApp
+function order(){
+let number="8801772554345";
+let msg="MOHASIN X SHOP ORDER%0A"+price.p1+"%0A"+price.p2+"%0A"+price.p3;
+window.open("https://wa.me/"+number+"?text="+msg);
 }
 </script>
 
