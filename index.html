@@ -9,14 +9,15 @@ body{margin:0;background:#0d0d1a;color:white;font-family:sans-serif;text-align:c
 .header{padding:15px;background:#14142b;}
 .card{background:#1a1a2e;margin:15px;padding:15px;border-radius:15px;}
 .btn{padding:12px;margin:6px;border:none;border-radius:10px;color:white;width:90%;}
-.login{background:#4285F4;}
-.deposit{background:#00cc66;}
-.buy{background:#ff00aa;}
-.admin{background:#ffaa00;}
 .pricebtn{background:#7a5cff;}
-.list{display:none;margin-top:10px;}
+.deposit{background:#00cc66;}
+.admin{background:#ffaa00;}
+.approve{background:#00cc66;}
+.delete{background:#ff4444;}
 .item{background:#111;margin:6px;padding:10px;border-radius:8px;}
+.list{display:none;margin-top:10px;}
 img{width:90%;border-radius:12px;}
+.balanceBox{background:#000;padding:10px;margin:10px;border-radius:10px;}
 </style>
 
 </head>
@@ -25,8 +26,15 @@ img{width:90%;border-radius:12px;}
 
 <div class="header">
 <h2>🔥 MOHASIN X SHOP 🔥</h2>
-<button class="btn login" onclick="login()">🔐 Login with Gmail</button>
-<p id="user"></p>
+
+<div class="balanceBox">
+👤 <span id="username">Not Set</span><br>
+💰 Balance: <span id="balance">0</span> TK
+</div>
+
+<button class="btn" onclick="setName()">👤 Set Name</button>
+<button class="btn" onclick="refreshBalance()">🔄 Refresh Balance</button>
+
 </div>
 
 <div class="card">
@@ -38,110 +46,163 @@ img{width:90%;border-radius:12px;}
 <button class="btn pricebtn" onclick="toggle()">📊 View Price List</button>
 
 <div class="list" id="list">
-<div class="item">1 DAY - 100TK <button onclick="order('1 DAY - 100TK')">Buy</button></div>
-<div class="item">3 DAY - 210TK <button onclick="order('3 DAY - 210TK')">Buy</button></div>
-<div class="item">7 DAY - 410TK <button onclick="order('7 DAY - 410TK')">Buy</button></div>
-<div class="item">15 DAY - 720TK <button onclick="order('15 DAY - 720TK')">Buy</button></div>
-<div class="item">30 DAY - 1040TK <button onclick="order('30 DAY - 1040TK')">Buy</button></div>
+<div class="item">1 DAY - 100TK <button onclick="buy('1 DAY - 100TK')">Buy</button></div>
+<div class="item">3 DAY - 210TK <button onclick="buy('3 DAY - 210TK')">Buy</button></div>
+<div class="item">7 DAY - 410TK <button onclick="buy('7 DAY - 410TK')">Buy</button></div>
+<div class="item">15 DAY - 720TK <button onclick="buy('15 DAY - 720TK')">Buy</button></div>
+<div class="item">30 DAY - 1040TK <button onclick="buy('30 DAY - 1040TK')">Buy</button></div>
 </div>
 
 <button class="btn deposit" onclick="deposit()">💳 Deposit</button>
 
 </div>
 
-<button class="btn admin" onclick="loadAdmin()">📊 Admin Panel</button>
-
+<button class="btn admin" onclick="admin()">📊 Admin Panel</button>
 <div id="adminPanel"></div>
 
 <!-- 🔥 FIREBASE FULL SYSTEM -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import { getFirestore, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import { getFirestore, addDoc, collection, getDocs, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAZxhdeUPoOEpNz3CD4A6yOrwD0lTGgrw4",
   authDomain: "mohasin-shop-965d2.firebaseapp.com",
   projectId: "mohasin-shop-965d2",
-  storageBucket: "mohasin-shop-965d2.firebasestorage.app",
-  messagingSenderId: "820549153329",
-  appId: "1:820549153329:web:0752cb58a547db7ed75b10",
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
 const db = getFirestore();
 
-let currentUser = null;
-
-/* 🔐 LOGIN */
-window.login = function(){
-  signInWithPopup(auth, provider)
-  .then(result=>{
-    currentUser = result.user;
-    document.getElementById("user").innerText =
-      "👤 " + currentUser.email;
-  });
+/* 👤 NAME */
+window.setName = function(){
+  let name = prompt("Enter your name:");
+  localStorage.setItem("user", name);
+  document.getElementById("username").innerText = name;
 }
 
-/* 💳 DEPOSIT */
+/* Load Name */
+let user = localStorage.getItem("user");
+if(user){
+  document.getElementById("username").innerText = user;
+}
+
+/* 💳 Deposit */
 window.deposit = async function(){
-  if(!currentUser){
-    alert("Login first ❌");
-    return;
-  }
+  let name = localStorage.getItem("user");
+  if(!name){ alert("Set name first ❌"); return; }
 
   let amount = prompt("Enter amount:");
 
-  await addDoc(collection(db, "deposit"), {
-    amount: amount,
-    user: currentUser.email,
-    time: new Date()
+  await addDoc(collection(db,"deposit"),{
+    name:name,
+    amount:Number(amount),
+    status:"Pending"
   });
 
-  alert("Deposit Saved ✅");
+  alert("Deposit Sent ✅");
 }
 
-/* 📊 ADMIN PANEL */
-window.loadAdmin = async function(){
+/* 💰 Balance */
+window.refreshBalance = async function(){
+  let name = localStorage.getItem("user");
+  if(!name){ alert("Set name first ❌"); return; }
 
-  if(!currentUser){
-    alert("Login first ❌");
-    return;
-  }
+  let data = await getDocs(collection(db,"deposit"));
+  let total=0;
 
-  if(currentUser.email !== "vaimohasin11@gmail.com"){
-    alert("Access Denied ❌");
-    return;
-  }
-
-  let data = await getDocs(collection(db, "deposit"));
-
-  let html = "<h3>📊 Deposits</h3>";
-
-  data.forEach(doc=>{
-    let d = doc.data();
-    html += `<p>👤 ${d.user} | 💰 ${d.amount}</p>`;
+  data.forEach(d=>{
+    let x=d.data();
+    if(x.name==name && x.status=="Approved"){
+      total+=x.amount;
+    }
   });
 
-  document.getElementById("adminPanel").innerHTML = html;
+  document.getElementById("balance").innerText = total;
+}
+
+/* 🛒 BUY */
+window.buy = async function(plan){
+
+  let name = localStorage.getItem("user");
+  if(!name){ alert("Set name first ❌"); return; }
+
+  let price={
+    "1 DAY - 100TK":100,
+    "3 DAY - 210TK":210,
+    "7 DAY - 410TK":410,
+    "15 DAY - 720TK":720,
+    "30 DAY - 1040TK":1040
+  };
+
+  let cost=price[plan];
+
+  let data = await getDocs(collection(db,"deposit"));
+  let total=0;
+
+  data.forEach(d=>{
+    let x=d.data();
+    if(x.name==name && x.status=="Approved"){
+      total+=x.amount;
+    }
+  });
+
+  if(total < cost){
+    alert("❌ Not enough balance");
+    return;
+  }
+
+  alert("✅ Order Success");
+
+  let number="8801772554345";
+  let msg="🔥 MOHASIN X SHOP 🔥%0AOrder: "+plan+" | Name: "+name;
+
+  window.open("https://wa.me/"+number+"?text="+msg);
+}
+
+/* 📊 ADMIN */
+window.admin = async function(){
+
+  let pass=prompt("Admin password:");
+  if(pass!="1234"){ alert("Wrong ❌"); return; }
+
+  let data = await getDocs(collection(db,"deposit"));
+  let html="<h3>📊 Admin Panel</h3>";
+
+  data.forEach(d=>{
+    let id=d.id;
+    let x=d.data();
+
+    html+=`
+    <div class="item">
+    👤 ${x.name} | 💰 ${x.amount} | ${x.status}<br>
+    <button class="approve" onclick="approve('${id}')">Approve</button>
+    <button class="delete" onclick="remove('${id}')">Delete</button>
+    </div>`;
+  });
+
+  document.getElementById("adminPanel").innerHTML=html;
+}
+
+/* ✅ APPROVE */
+window.approve = async function(id){
+  await updateDoc(doc(db,"deposit",id),{status:"Approved"});
+  admin();
+}
+
+/* ❌ DELETE */
+window.remove = async function(id){
+  await deleteDoc(doc(db,"deposit",id));
+  admin();
 }
 
 </script>
 
-<!-- NORMAL JS -->
 <script>
 function toggle(){
 let x=document.getElementById("list");
 x.style.display = x.style.display=="block" ? "none" : "block";
-}
-
-function order(plan){
-let number="8801772554345";
-let msg="🔥 MOHASIN X SHOP 🔥%0A"+plan;
-window.open("https://wa.me/"+number+"?text="+msg);
 }
 </script>
 
