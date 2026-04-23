@@ -2,360 +2,153 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MOHASIN X SHOP</title>
 
 <style>
-body {
-    background: black;
-    color: white;
-    font-family: monospace;
-    text-align: center;
-    margin: 0;
+body{
+  background:black;
+  color:white;
+  font-family:monospace;
+  text-align:center;
 }
 
-/* INTRO */
-#intro {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
+/* 🌈 Rainbow Text */
+.rainbow{
+  font-size:40px;
+  font-weight:bold;
+  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 2s infinite linear;
+}
+@keyframes glow{
+  0%{filter:brightness(1);}
+  50%{filter:brightness(2);}
+  100%{filter:brightness(1);}
 }
 
-#intro h1 {
-    font-size: 40px;
-    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* Container */
+.container{
+  max-width:400px;
+  margin:auto;
 }
 
-/* MAIN */
-#main {
-    display: none;
-    padding: 20px;
+/* Glory Image */
+.glory img{
+  width:100%;
+  border-radius:10px;
+  margin-top:15px;
 }
 
-/* TITLE */
-.title {
-    font-size: 35px;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* Box */
+.box{
+  border:1px solid #00ffcc;
+  border-radius:12px;
+  padding:15px;
+  margin-top:15px;
 }
 
-/* IMAGE */
-.glory-img {
-    width: 90%;
-    max-width: 500px;
-    border-radius: 10px;
-    margin: 15px auto;
-    display: block;
-}
-
-/* BOX */
-.box {
-    border: 2px solid #00ffcc;
-    padding: 20px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 10px;
-}
-
-/* PRICE */
-.price {
-    color: #00ffcc;
-    font-size: 18px;
-}
-
-/* INPUT */
-input, select {
-    padding: 10px;
-    width: 90%;
-    border-radius: 5px;
-    border: none;
-    margin-top: 10px;
-}
-
-/* BUTTON */
-.btn {
-    background: #00ffcc;
-    color: black;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 15px;
-    cursor: pointer;
-}
-</style>
-</head>
-
-<body>
-
-<!-- INTRO -->
-<div id="intro">
-    <h1 id="typing"></h1>
-</div>
-
-<!-- MAIN -->
-<div id="main">
-
-    <h1 class="title">🔥 FF GUILD GLORY BOT 🔥</h1>
-
-    <!-- 🔥 IMAGE ADD -->
-    <img src="glory.jpg" class="glory-img">
-
-    <!-- PRICE -->
-    <div class="box">
-        <h2>💎 Price List</h2>
-        <p class="price">4 Bot = 200 TK</p>
-        <p class="price">8 Bot = 400 TK</p>
-        <p class="price">20 Bot = 1000 TK</p>
-        <p class="price">24 Bot = 1200 TK</p>
-    </div>
-
-    <!-- ORDER -->
-    <div class="box">
-        <h2>🛒 Order Now</h2>
-
-        <input type="text" placeholder="Enter UID">
-
-        <select>
-            <option>Select Package</option>
-            <option>4 Bot - 200 TK</option>
-            <option>8 Bot - 400 TK</option>
-            <option>20 Bot - 1000 TK</option>
-            <option>24 Bot - 1200 TK</option>
-        </select>
-
-        <button class="btn">Buy Now</button>
-    </div>
-
-</div>
-
-<!-- SCRIPT -->
-<script>
-let text = "🔥 MOHASIN X SHOP 🔥";
-let i = 0;
-
-function typing() {
-    if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing, 80);
-    } else {
-        setTimeout(() => {
-            document.getElementById("intro").style.display = "none";
-            document.getElementById("main").style.display = "block";
-        }, 1000);
-    }
-}
-
-typing();
-</script>
-
-</body>
-    </html><div id="main">
-
-    <h1 class="title">🔥 FF GUILD GLORY BOT 🔥</h1>
-
-    <div class="box">
-        <h2>💎 Price List</h2>
-        <p class="price">4 Bot = 200 TK</p>
-        <p class="price">8 Bot = 400 TK</p>
-        <p class="price">20 Bot = 1000 TK</p>
-        <p class="price">24 Bot = 1200 TK</p>
-    </div>
-
-    <div class="box">
-        <h2>🛒 Order Now</h2>
-
-        <input type="text" placeholder="Enter UID"><br><br>
-
-        <select>
-            <option>Select Package</option>
-            <option>4 Bot - 200 TK</option>
-            <option>8 Bot - 400 TK</option>
-            <option>20 Bot - 1000 TK</option>
-            <option>24 Bot - 1200 TK</option>
-        </select><br><br>
-
-        <button class="btn">Buy Now</button>
-    </div>
-
-    <div class="box">
-        <p>⚡ Fast Delivery | 💯 Trusted Service</p>
-    </div>
-
-</div>
-
-<!-- SCRIPT -->
-<script>
-let text = "🔥 MOHASIN X SHOP 🔥";
-let i = 0;
-
-function typing() {
-    if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing, 80);
-    } else {
-        setTimeout(() => {
-            document.getElementById("intro").style.display = "none";
-            document.getElementById("main").style.display = "block";
-        }, 1000);
-    }
-}
-
-typing();
-</script>
-
-</body>
-</html>  border-radius:15px;
-  padding:10px;
-}
-
+/* Items */
 .item{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   padding:10px;
   border-bottom:1px solid #333;
 }
-
 .item:last-child{border:none;}
 
-.plan{
-  font-weight:bold;
-}
+.plan{font-weight:bold;}
+.price{color:#00ff88;}
 
-.price{
-  color:#00ff88;
-}
-
+/* Button */
 .buy{
-  background:#ff00ff;
+  background: linear-gradient(45deg,#00ffcc,#ff00ff);
   border:none;
-  padding:6px 10px;
+  padding:6px 12px;
   border-radius:8px;
   color:white;
+  cursor:pointer;
 }
 
 .footer{
-  margin:15px;
-  display:flex;
-  gap:10px;
+  margin-top:20px;
 }
-
-.btn{
-  flex:1;
-  padding:15px;
-  border-radius:12px;
-  border:none;
-  font-weight:bold;
-}
-
-.deposit{background:#00aa55;}
-.balance{background:#0055aa;}
-
 </style>
 </head>
 
 <body>
 
-<div class="header">🔥 MOHASIN X SHOP 🔥</div>
+<div class="container">
 
-<div class="card">
+<!-- 🌈 NAME -->
+<h1 class="rainbow">MOHASIN X SHOP</h1>
+<p>🔥 Welcome Mohasin 🔥</p>
 
-<!-- 🔥 তোমার logo -->
-<img src="drip.jpg">
-
-<div class="title">DRIP CLIENT</div>
-<div class="sub">Best Free Fire Panel</div>
-
-<div class="priceBox">
-
-<div class="item">
-<div class="plan">1 DAY</div>
-<div class="price">100 TK</div>
-<button class="buy" onclick="order('1 DAY - 100TK')">Buy</button>
+<!-- 🖼️ GLORY IMAGE -->
+<div class="glory">
+  <img src="glory.jpg">
 </div>
 
-<div class="item">
-<div class="plan">3 DAY</div>
-<div class="price">210 TK</div>
-<button class="buy" onclick="order('3 DAY - 210TK')">Buy</button>
+<!-- 💎 PRICE LIST -->
+<div class="box">
+  <h3>💎 Price List</h3>
+  <p>4 BOT = 200 TK</p>
+  <p>8 BOT = 400 TK</p>
+  <p>20 BOT = 1000 TK</p>
+  <p>24 BOT = 1200 TK</p>
 </div>
 
-<div class="item">
-<div class="plan">7 DAY</div>
-<div class="price">410 TK</div>
-<button class="buy" onclick="order('7 DAY - 410TK')">Buy</button>
+<!-- 🛒 ORDER SYSTEM -->
+<div class="box">
+  <h3>🛒 Order Now</h3>
+
+  <div class="item">
+    <span class="plan">4 BOT</span>
+    <span class="price">200 TK</span>
+    <button class="buy" onclick="orderNow('4 BOT - 200 TK')">Buy</button>
+  </div>
+
+  <div class="item">
+    <span class="plan">8 BOT</span>
+    <span class="price">400 TK</span>
+    <button class="buy" onclick="orderNow('8 BOT - 400 TK')">Buy</button>
+  </div>
+
+  <div class="item">
+    <span class="plan">20 BOT</span>
+    <span class="price">1000 TK</span>
+    <button class="buy" onclick="orderNow('20 BOT - 1000 TK')">Buy</button>
+  </div>
+
+  <div class="item">
+    <span class="plan">24 BOT</span>
+    <span class="price">1200 TK</span>
+    <button class="buy" onclick="orderNow('24 BOT - 1200 TK')">Buy</button>
+  </div>
+
 </div>
 
-<div class="item">
-<div class="plan">15 DAY</div>
-<div class="price">720 TK</div>
-<button class="buy" onclick="order('15 DAY - 720TK')">Buy</button>
-</div>
-
-<div class="item">
-<div class="plan">30 DAY</div>
-<div class="price">1040 TK</div>
-<button class="buy" onclick="order('30 DAY - 1040TK')">Buy</button>
-</div>
-
-</div>
-
-</div>
-
+<!-- FOOTER -->
 <div class="footer">
-<button class="btn deposit">💳 Deposit</button>
-<button class="btn balance">💰 Balance</button>
+  🔥 MOHASIN X SHOP 🔥
 </div>
 
+</div>
+
+<!-- 📲 WhatsApp Script -->
 <script>
-function order(plan){
-let number="8801772554345";
-let msg="🔥 MOHASIN X SHOP 🔥\nOrder: "+plan;
+function orderNow(packageName){
+    let number = "8801771554345"; // 👉 তোমার নাম্বার বসাও
+    
+    let message = `🔥 FF GUILD GLORY ORDER 🔥%0A
+🛒 Package: ${packageName}%0A
+👤 Name:%0A
+🎮 UID:%0A
+💰 Payment: BKash/Nagad`;
 
-let url="https://wa.me/"+number+"?text="+encodeURIComponent(msg);
-
-window.open(url,"_blank");
-}
-</script>
-
-</body>
-  </html><button class="btn demo">Demo</button>
-<button class="btn buy" onclick="order('DRIP CLIENT')">Buy</button>
-</div>
-</div>
-
-<!-- CARD 2 -->
-<div class="card">
-<img src="https://i.ibb.co/q7G5X9C/carro.jpg">
-<div class="title">CARROM HACK</div>
-<div class="tag">Auto aim panel</div>
-<div class="price">From 200 TK</div>
-
-<div class="btns">
-<button class="btn demo">Demo</button>
-<button class="btn buy" onclick="order('CARROM HACK')">Buy</button>
-</div>
-</div>
-
-</div>
-
-<script>
-function order(name){
-let number="8801772554345";
-let msg="MOHASIN X SHOP%0AProduct: "+name;
-
-window.open("https://wa.me/"+number+"?text="+msg);
+    let url = `https://wa.me/${number}?text=${message}`;
+    window.open(url, '_blank');
 }
 </script>
 
