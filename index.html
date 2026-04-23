@@ -5,12 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+  .title {
+    font-size: 35px;
+    font-weight: bold;
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.box {
+    border: 2px solid #00ffcc;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.price {
+    color: #00ffcc;
+    font-size: 20px;
+}
+
+.btn {
+    background: #00ffcc;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
 body{
   margin:0;
   background:#050512;
   font-family:sans-serif;
   color:white;
-}
+<h1 class="title">🔥 FF GUILD GLORY BOT 🔥</h1>
+
+<div class="box">
+    <h2>💎 Price List</h2>
+
+    <p class="price">4 Bot = 200 TK</p>
+    <p class="price">8 Bot = 400 TK</p>
+    <p class="price">20 Bot = 1000 TK</p>
+    <p class="price">24 Bot = 1200 TK</p>
+</div>
+
+<div class="box">
+    <h2>🛒 Order</h2>
+
+    <input type="text" placeholder="Enter UID"><br><br>
+
+    <select>
+        <option>4 Bot - 200 TK</option>
+        <option>8 Bot - 400 TK</option>
+        <option>20 Bot - 1000 TK</option>
+        <option>24 Bot - 1200 TK</option>
+    </select><br><br>
+
+    <button class="btn">Buy Now</button>
+</div>
 
 .header{
   text-align:center;
