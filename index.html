@@ -2,6 +2,166 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>MOHASIN X SHOP</title>
+
+<style>
+body {
+    background: black;
+    color: white;
+    font-family: monospace;
+    text-align: center;
+    margin: 0;
+}
+
+/* INTRO */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#intro h1 {
+    font-size: 40px;
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* MAIN */
+#main {
+    display: none;
+    padding: 20px;
+}
+
+/* TITLE */
+.title {
+    font-size: 35px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* IMAGE */
+.glory-img {
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    margin: 15px auto;
+    display: block;
+}
+
+/* BOX */
+.box {
+    border: 2px solid #00ffcc;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+/* PRICE */
+.price {
+    color: #00ffcc;
+    font-size: 18px;
+}
+
+/* INPUT */
+input, select {
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+}
+
+/* BUTTON */
+.btn {
+    background: #00ffcc;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+    <h1 id="typing"></h1>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+    <h1 class="title">🔥 FF GUILD GLORY BOT 🔥</h1>
+
+    <!-- 🔥 IMAGE ADD -->
+    <img src="glory.jpg" class="glory-img">
+
+    <!-- PRICE -->
+    <div class="box">
+        <h2>💎 Price List</h2>
+        <p class="price">4 Bot = 200 TK</p>
+        <p class="price">8 Bot = 400 TK</p>
+        <p class="price">20 Bot = 1000 TK</p>
+        <p class="price">24 Bot = 1200 TK</p>
+    </div>
+
+    <!-- ORDER -->
+    <div class="box">
+        <h2>🛒 Order Now</h2>
+
+        <input type="text" placeholder="Enter UID">
+
+        <select>
+            <option>Select Package</option>
+            <option>4 Bot - 200 TK</option>
+            <option>8 Bot - 400 TK</option>
+            <option>20 Bot - 1000 TK</option>
+            <option>24 Bot - 1200 TK</option>
+        </select>
+
+        <button class="btn">Buy Now</button>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+let text = "🔥 MOHASIN X SHOP 🔥";
+let i = 0;
+
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 80);
+    } else {
+        setTimeout(() => {
+            document.getElementById("intro").style.display = "none";
+            document.getElementById("main").style.display = "block";
+        }, 1000);
+    }
+}
+
+typing();
+</script>
+
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MOHASIN X SHOP</title>
 
