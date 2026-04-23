@@ -1,18 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>MOHASIN X SHOP</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  .title {
+body {
+    background: black;
+    color: white;
+    font-family: monospace;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Entry Screen */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    flex-direction: column;
+}
+
+#intro h1 {
+    font-size: 40px;
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 20px #00ffcc; }
+}
+
+/* Main hidden */
+#main {
+    display: none;
+}
+
+/* Title */
+.title {
     font-size: 35px;
     font-weight: bold;
+    margin-top: 20px;
     background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+/* Box */
 .box {
     border: 2px solid #00ffcc;
     padding: 20px;
@@ -20,85 +63,98 @@
     border-radius: 10px;
 }
 
+/* Price */
 .price {
     color: #00ffcc;
     font-size: 20px;
 }
 
+/* Input */
+input, select {
+    padding: 10px;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+}
+
+/* Button */
 .btn {
     background: #00ffcc;
     color: black;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
-body{
-  margin:0;
-  background:#050512;
-  font-family:sans-serif;
-  color:white;
-<h1 class="title">🔥 FF GUILD GLORY BOT 🔥</h1>
 
-<div class="box">
-    <h2>💎 Price List</h2>
+</style>
+</head>
 
-    <p class="price">4 Bot = 200 TK</p>
-    <p class="price">8 Bot = 400 TK</p>
-    <p class="price">20 Bot = 1000 TK</p>
-    <p class="price">24 Bot = 1200 TK</p>
+<body>
+
+<!-- 🔥 ENTRY ANIMATION -->
+<div id="intro">
+    <h1 id="typing"></h1>
 </div>
 
-<div class="box">
-    <h2>🛒 Order</h2>
+<!-- MAIN WEBSITE -->
+<div id="main">
 
-    <input type="text" placeholder="Enter UID"><br><br>
+    <h1 class="title">🔥 FF GUILD GLORY BOT 🔥</h1>
 
-    <select>
-        <option>4 Bot - 200 TK</option>
-        <option>8 Bot - 400 TK</option>
-        <option>20 Bot - 1000 TK</option>
-        <option>24 Bot - 1200 TK</option>
-    </select><br><br>
+    <div class="box">
+        <h2>💎 Price List</h2>
+        <p class="price">4 Bot = 200 TK</p>
+        <p class="price">8 Bot = 400 TK</p>
+        <p class="price">20 Bot = 1000 TK</p>
+        <p class="price">24 Bot = 1200 TK</p>
+    </div>
 
-    <button class="btn">Buy Now</button>
+    <div class="box">
+        <h2>🛒 Order Now</h2>
+
+        <input type="text" placeholder="Enter UID"><br><br>
+
+        <select>
+            <option>Select Package</option>
+            <option>4 Bot - 200 TK</option>
+            <option>8 Bot - 400 TK</option>
+            <option>20 Bot - 1000 TK</option>
+            <option>24 Bot - 1200 TK</option>
+        </select><br><br>
+
+        <button class="btn">Buy Now</button>
+    </div>
+
+    <div class="box">
+        <p>⚡ Fast Delivery | 💯 Trusted Service</p>
+    </div>
+
 </div>
 
-.header{
-  text-align:center;
-  padding:15px;
-  background:#0d0d2a;
-  font-size:20px;
-  font-weight:bold;
+<!-- SCRIPT -->
+<script>
+let text = "🔥 MOHASIN X SHOP 🔥";
+let i = 0;
+
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 80);
+    } else {
+        setTimeout(() => {
+            document.getElementById("intro").style.display = "none";
+            document.getElementById("main").style.display = "block";
+        }, 1000);
+    }
 }
 
-.card{
-  margin:15px;
-  padding:15px;
-  border-radius:20px;
-  background:linear-gradient(145deg,#0f0f2a,#050512);
-  box-shadow:0 0 20px #ff00ff55;
-  text-align:center;
-}
+typing();
+</script>
 
-.card img{
-  width:220px;
-}
-
-.title{
-  font-size:22px;
-  margin-top:10px;
-  font-weight:bold;
-}
-
-.sub{
-  color:#aaa;
-  font-size:14px;
-}
-
-.priceBox{
-  margin-top:20px;
-  background:#0d0d2a;
-  border-radius:15px;
+</body>
+</html>  border-radius:15px;
   padding:10px;
 }
 
