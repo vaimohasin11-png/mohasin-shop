@@ -1,497 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOHASIN X SHOP - Order via WhatsApp</title>
-    <style>
-        :root {
-            --primary-color: #ff00ff;
-            --secondary-color: #ffd700;
-            --bg-color: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --text-white: #ffffff;
-            --whatsapp-green: #25D366;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-white);
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        header {
-            padding: 40px 20px;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('mohasindrip.jpg');
-            background-size: cover;
-            background-position: center;
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        header h1 {
-            font-size: 3rem;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            margin: 0;
-            text-shadow: 2px 2px 10px rgba(255, 0, 255, 0.5);
-        }
-
-        .owner-info {
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin: 40px 0 20px;
-            color: var(--text-white);
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid #333;
-            padding-bottom: 20px;
-        }
-
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .price-list {
-            list-style: none;
-            padding: 0 20px;
-        }
-
-        .price-item {
-            background: #252525;
-            margin: 10px 0;
-            padding: 12px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.3s;
-        }
-
-        .price-item:hover {
-            background: #333;
-        }
-
-        .price-info span {
-            display: block;
-            text-align: left;
-        }
-
-        .duration { font-weight: bold; color: var(--primary-color); }
-        .amount { color: var(--secondary-color); font-size: 0.9rem; }
-
-        .btn-whatsapp {
-            background: var(--whatsapp-green);
-            color: white;
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-whatsapp:hover {
-            background: #128C7E;
-            transform: scale(1.05);
-        }
-
-        footer {
-            padding: 30px;
-            background: #000;
-            margin-top: 50px;
-            color: #777;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>MOHASIN X SHOP</h1>
-        <div class="owner-info">Owner: Mohasin | WhatsApp: 01772554345</div>
-    </header>
-
-    <div class="container">
-        
-        <h2 class="section-title">Drip Client Panel</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="mohasindrip.jpg" alt="Drip Client">
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="price-info">
-                            <span class="duration">1 Day Access</span>
-                            <span class="amount">Price: 100 TK</span>
-                        </div>
-                        <a href="https://wa.me/8801772554345?text=Hello%20Mohasin%20X%20Shop,%20I%20want%20to%20buy%20Drip%20Client%201%20Day%20Package%20(100%20TK)" class="btn-whatsapp">Buy Now</a>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <span class="duration">3 Days Access</span>
-                            <span class="amount">Price: 200 TK</span>
-                        </div>
-                        <a href="https://wa.me/8801772554345?text=Hello%20Mohasin%20X%20Shop,%20I%20want%20to%20buy%20Drip%20Client%203%20Days%20Package%20(200%20TK)" class="btn-whatsapp">Buy Now</a>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <span class="duration">7 Days Access</span>
-                            <span class="amount">Price: 400 TK</span>
-                        </div>
-                        <a href="https://wa.me/8801772554345?text=Hello%20Mohasin%20X%20Shop,%20I%20want%20to%20buy%20Drip%20Client%207%20Days%20Package%20(400%20TK)" class="btn-whatsapp">Buy Now</a>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <span class="duration">15 Days Access</span>
-                            <span class="amount">Price: 700 TK</span>
-                        </div>
-                        <a href="https://wa.me/8801772554345?text=Hello%20Mohasin%20X%20Shop,%20I%20want%20to%20buy%20Drip%20Client%2015%20Days%20Package%20(700%20TK)" class="btn-whatsapp">Buy Now</a>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <span class="duration">30 Days Access</span>
-                            <span class="amount">Price: 1040 TK</span>
-                        </div>
-                        <a href="https://wa.me/8801772554345?text=Hello%20Mohasin%20X%20Shop,%20I%20want%20to%20buy%20Drip%20Client%2030%20Days%20Package%20(1040%20TK)" class="btn-whatsapp">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="section-title">FF Guild Glory Bot</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="glory.jpg" alt="Guild Glory Bot">
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="price-info">
-                            <span class="duration">4 Glory Bots</span>
-                            <span class="amount">Price: 200 TK</span>
-                        </div>
-                        <a href="https://wa.me/8801772554345?text=Hello%20Mohasin%20X%20Shop,%20I%20want%20to%20order%204%20Glory%20Bots%20(200%20TK)" class="btn-whatsapp">Buy Now</a>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <span class="duration">8 Glory Bots</span>
-                            <span class="amount">Price: 400 TK</span>
-                        </div>
-                        <a href="https://wa.me/8801772554345?text=Hello%20Mohasin%20X%20Shop,%20I%20want%20to%20order%208%20Glory%20Bots%20(400%20TK)" class="btn-whatsapp">Buy Now</a>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <span class="duration">20 Glory Bots</span>
-                            <span class="amount">Price: 1000 TK</span>
-                        </div>
-                        <a href="https://wa.me/8801772554345?text=Hello%20Mohasin%20X%20Shop,%20I%20want%20to%20order%2020%20Glory%20Bots%20(1000%20TK)" class="btn-whatsapp">Buy Now</a>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <span class="duration">24 Glory Bots</span>
-                            <span class="amount">Price: 1200 TK</span>
-                        </div>
-                        <a href="https://wa.me/8801772554345?text=Hello%20Mohasin%20X%20Shop,%20I%20want%20to%20order%2024%20Glory%20Bots%20(1200%20TK)" class="btn-whatsapp">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <footer>
-        &copy; 2026 MOHASIN X SHOP | Created by Mohasin
-    </footer>
-
-</body>
-</html>
-
-        .price-list li:last-child {
-            border-bottom: none;
-        }
-
-        .btn-buy {
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 15px;
-            text-transform: uppercase;
-        }
-
-        .glory-card .btn-buy {
-            background: var(--secondary-color);
-            color: #000;
-        }
-
-        footer {
-            padding: 30px;
-            background: #000;
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: #777;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>MOHASIN X SHOP</h1>
-        <div class="owner-info">Owner & Founder: Mohasin</div>
-    </header>
-
-    <div class="container">
-        
-        <h2 class="section-title">Drip Client Panel</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="mohasindrip.jpg" alt="Drip Client">
-                <div class="card-content">
-                    <h3>DRIP CLIENT PRICE LIST</h3>
-                    <ul class="price-list">
-                        <li><span>1 Day</span> <span>100 TK</span></li>
-                        <li><span>3 Days</span> <span>200 TK</span></li>
-                        <li><span>7 Days</span> <span>400 TK</span></li>
-                        <li><span>15 Days</span> <span>700 TK</span></li>
-                        <li><span>30 Days</span> <span>1040 TK</span></li>
-                    </ul>
-                    <button class="btn-buy">Buy Now</button>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="section-title">Guild Glory Bot</h2>
-        <div class="grid">
-            <div class="card glory-card">
-                <img src="glory.jpg" alt="Guild Glory Bot">
-                <div class="card-content">
-                    <h3>GLORY BOT PRICE LIST</h3>
-                    <ul class="price-list">
-                        <li><span>4 Bots</span> <span>200 TK</span></li>
-                        <li><span>8 Bots</span> <span>400 TK</span></li>
-                        <li><span>20 Bots</span> <span>1000 TK</span></li>
-                        <li><span>24 Bots</span> <span>1200 TK</span></li>
-                    </ul>
-                    <button class="btn-buy">Buy Now</button>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <footer>
-        &copy; 2026 MOHASIN X SHOP | All Rights Reserved.
-    </footer>
-
-</body>
-</html>    </div>
-
-</div>
-
-<!-- SCRIPT -->
-<script>
-let text = "🔥 MOHASIN X SHOP 🔥";
-let i = 0;
-
-function typing() {
-    if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing, 80);
-    } else {
-        setTimeout(() => {
-            document.getElementById("intro").style.display = "none";
-            document.getElementById("main").style.display = "block";
-        }, 1000);
-    }
-}
-
-typing();
-</script>
-
-
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOHASIN X SHOP</title>
-
+<title>MOHASIN FF TOOL PANEL</title>
 <style>
-body{
-  background:black;
-  color:white;
-  font-family:monospace;
-  text-align:center;
-}
-
-/* 🌈 Rainbow Text */
-.rainbow{
-  font-size:40px;
-  font-weight:bold;
-  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: glow 2s infinite linear;
-}
-@keyframes glow{
-  0%{filter:brightness(1);}
-  50%{filter:brightness(2);}
-  100%{filter:brightness(1);}
-}
-
-/* Container */
-.container{
-  max-width:400px;
-  margin:auto;
-}
-
-/* Glory Image */
-.glory img{
-  width:100%;
-  border-radius:10px;
-  margin-top:15px;
-}
-
-/* Box */
-.box{
-  border:1px solid #00ffcc;
-  border-radius:12px;
-  padding:15px;
-  margin-top:15px;
-}
-
-/* Items */
-.item{
-  display:flex;
-  justify-content:space-between;
-  padding:10px;
-  border-bottom:1px solid #333;
-}
-.item:last-child{border:none;}
-
-.plan{font-weight:bold;}
-.price{color:#00ff88;}
-
-/* Button */
-.buy{
-  background: linear-gradient(45deg,#00ffcc,#ff00ff);
-  border:none;
-  padding:6px 12px;
-  border-radius:8px;
-  color:white;
-  cursor:pointer;
-}
-
-.footer{
-  margin-top:20px;
-}
+body{background:#0f0f0f;color:#fff;font-family:sans-serif;text-align:center}
+.rainbow{font-size:34px;font-weight:bold;animation:rb 5s infinite}
+@keyframes rb{0%{color:red}25%{color:yellow}50%{color:green}75%{color:cyan}100%{color:magenta}}
+.card{background:#1a1a1a;margin:12px;padding:16px;border-radius:14px;box-shadow:0 0 12px #00ffcc}
+input,select{padding:8px;border-radius:8px;border:none;margin:5px}
+button{padding:8px 14px;border:none;border-radius:10px;background:#00ffcc;font-weight:bold;cursor:pointer}
+table{width:90%;margin:auto;border-collapse:collapse}
+td,th{border:1px solid #00ffcc;padding:6px}
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<h1 class="rainbow">MOHASIN FF TOOL PANEL</h1>
 
-<!-- 🌈 NAME -->
-<h1 class="rainbow">MOHASIN X SHOP</h1>
-<p>🔥 Welcome Mohasin 🔥</p>
-
-<!-- 🖼️ GLORY IMAGE -->
-<div class="glory">
-  <img src="glory.jpg">
+<div class="card">
+<h3>🎯 Sensitivity Preset</h3>
+<input id="gen" placeholder="General">
+<input id="red" placeholder="Red Dot">
+<input id="sc2" placeholder="2x">
+<button onclick="saveSens()">Save</button>
 </div>
 
-<!-- 💎 PRICE LIST -->
-<div class="box">
-  <h3>💎 Price List</h3>
-  <p>4 BOT = 200 TK</p>
-  <p>8 BOT = 400 TK</p>
-  <p>20 BOT = 1000 TK</p>
-  <p>24 BOT = 1200 TK</p>
+<div class="card">
+<h3>⏱️ Practice Timer</h3>
+<select id="mins">
+  <option>5</option><option>10</option><option>15</option>
+</select>
+<button onclick="startTimer()">Start</button>
+<p id="timer"></p>
 </div>
 
-<!-- 🛒 ORDER SYSTEM -->
-<div class="box">
-  <h3>🛒 Order Now</h3>
-
-  <div class="item">
-    <span class="plan">4 BOT</span>
-    <span class="price">200 TK</span>
-    <button class="buy" onclick="orderNow('4 BOT - 200 TK')">Buy</button>
-  </div>
-
-  <div class="item">
-    <span class="plan">8 BOT</span>
-    <span class="price">400 TK</span>
-    <button class="buy" onclick="orderNow('8 BOT - 400 TK')">Buy</button>
-  </div>
-
-  <div class="item">
-    <span class="plan">20 BOT</span>
-    <span class="price">1000 TK</span>
-    <button class="buy" onclick="orderNow('20 BOT - 1000 TK')">Buy</button>
-  </div>
-
-  <div class="item">
-    <span class="plan">24 BOT</span>
-    <span class="price">1200 TK</span>
-    <button class="buy" onclick="orderNow('24 BOT - 1200 TK')">Buy</button>
-  </div>
-
+<div class="card">
+<h3>📊 Match Stats</h3>
+<input id="kills" placeholder="Kills">
+<input id="hs" placeholder="Headshots">
+<button onclick="addStat()">Add</button>
+<div id="stats"></div>
 </div>
 
-<!-- FOOTER -->
-<div class="footer">
-  🔥 MOHASIN X SHOP 🔥
-</div>
-
-</div>
-
-<!-- 📲 WhatsApp Script -->
 <script>
-function orderNow(packageName){
-    let number = "8801772554345"; // 👉 তোমার নাম্বার বসাও
-    
-    let message = `🔥 FF GUILD GLORY ORDER 🔥%0A
-🛒 Package: ${packageName}%0A
-👤 Name:%0A
-🎮 UID:%0A
-💰 Payment: BKash/Nagad`;
-
-    let url = `https://wa.me/${number}?text=${message}`;
-    window.open(url, '_blank');
+function saveSens(){
+  let s = {
+    gen: gen.value, red: red.value, sc2: sc2.value
+  };
+  localStorage.setItem("sens", JSON.stringify(s));
+  alert("Saved!");
 }
+
+function startTimer(){
+  let t = mins.value * 60;
+  let i = setInterval(()=>{
+    let m = Math.floor(t/60), s = t%60;
+    timer.innerText = m+":"+ (s<10?"0":"")+s;
+    t--;
+    if(t<0){clearInterval(i); alert("Done!");}
+  },1000);
+}
+
+function addStat(){
+  let k = Number(kills.value||0);
+  let h = Number(hs.value||0);
+  let arr = JSON.parse(localStorage.getItem("stats")||"[]");
+  arr.push({k,h,time:new Date().toLocaleString()});
+  localStorage.setItem("stats", JSON.stringify(arr));
+  showStats();
+}
+
+function showStats(){
+  let arr = JSON.parse(localStorage.getItem("stats")||"[]");
+  let html = "<table><tr><th>K</th><th>HS</th><th>Time</th></tr>";
+  arr.forEach(x=> html += `<tr><td>${x.k}</td><td>${x.h}</td><td>${x.time}</td></tr>`);
+  html += "</table>";
+  stats.innerHTML = html;
+}
+showStats();
 </script>
 
 </body>
