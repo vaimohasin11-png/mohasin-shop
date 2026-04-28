@@ -1,84 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<title>MOHASIN FF TOOL PANEL</title>
-<style>
-body{background:#0f0f0f;color:#fff;font-family:sans-serif;text-align:center}
-.rainbow{font-size:34px;font-weight:bold;animation:rb 5s infinite}
-@keyframes rb{0%{color:red}25%{color:yellow}50%{color:green}75%{color:cyan}100%{color:magenta}}
-.card{background:#1a1a1a;margin:12px;padding:16px;border-radius:14px;box-shadow:0 0 12px #00ffcc}
-input,select{padding:8px;border-radius:8px;border:none;margin:5px}
-button{padding:8px 14px;border:none;border-radius:10px;background:#00ffcc;font-weight:bold;cursor:pointer}
-table{width:90%;margin:auto;border-collapse:collapse}
-td,th{border:1px solid #00ffcc;padding:6px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohasin X Sensi - Best FF Settings</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #ff4500;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4500;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background: #2d2d2d;
+            color: white;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff4500;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #e63e00;
+            transform: scale(1.02);
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #2d2d2d;
+            border-radius: 10px;
+            display: none;
+            border: 1px solid #ff4500;
+        }
+
+        .sensi-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+        }
+
+        .val {
+            color: #ff4500;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<h1 class="rainbow">MOHASIN FF TOOL PANEL</h1>
+<div class="container">
+    <h1>MOHASIN X SENSI</h1>
+    
+    <div class="input-group">
+        <label>Phone Brand:</label>
+        <select id="brand">
+            <option value="samsung">Samsung</option>
+            <option value="xiaomi">Xiaomi / Redmi</option>
+            <option value="vivo">Vivo / Oppo</option>
+            <option value="realme">Realme</option>
+            <option value="iphone">iPhone</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
 
-<div class="card">
-<h3>🎯 Sensitivity Preset</h3>
-<input id="gen" placeholder="General">
-<input id="red" placeholder="Red Dot">
-<input id="sc2" placeholder="2x">
-<button onclick="saveSens()">Save</button>
-</div>
+    <div class="input-group">
+        <label>RAM Size:</label>
+        <select id="ram">
+            <option value="2">2GB</option>
+            <option value="3">3GB</option>
+            <option value="4">4GB</option>
+            <option value="6">6GB</option>
+            <option value="8">8GB+</option>
+        </select>
+    </div>
 
-<div class="card">
-<h3>⏱️ Practice Timer</h3>
-<select id="mins">
-  <option>5</option><option>10</option><option>15</option>
-</select>
-<button onclick="startTimer()">Start</button>
-<p id="timer"></p>
-</div>
+    <div class="input-group">
+        <label>Storage (ROM):</label>
+        <select id="storage">
+            <option value="32">32GB</option>
+            <option value="64">64GB</option>
+            <option value="128">128GB</option>
+            <option value="256">256GB+</option>
+        </select>
+    </div>
 
-<div class="card">
-<h3>📊 Match Stats</h3>
-<input id="kills" placeholder="Kills">
-<input id="hs" placeholder="Headshots">
-<button onclick="addStat()">Add</button>
-<div id="stats"></div>
+    <button onclick="calculateSensi()">GENERATE CONFIG</button>
+
+    <div id="result">
+        <h3 style="margin-top:0;">Recommended Settings</h3>
+        <div class="sensi-item"><span>General:</span> <span class="val" id="gen">--</span></div>
+        <div class="sensi-item"><span>Red Dot:</span> <span class="val" id="red">--</span></div>
+        <div class="sensi-item"><span>2x Scope:</span> <span class="val" id="s2x">--</span></div>
+        <div class="sensi-item"><span>4x Scope:</span> <span class="val" id="s4x">--</span></div>
+        <div class="sensi-item"><span>DPI:</span> <span class="val" id="dpi">--</span></div>
+    </div>
 </div>
 
 <script>
-function saveSens(){
-  let s = {
-    gen: gen.value, red: red.value, sc2: sc2.value
-  };
-  localStorage.setItem("sens", JSON.stringify(s));
-  alert("Saved!");
-}
+    function calculateSensi() {
+        const ram = parseInt(document.getElementById('ram').value);
+        const resultDiv = document.getElementById('result');
 
-function startTimer(){
-  let t = mins.value * 60;
-  let i = setInterval(()=>{
-    let m = Math.floor(t/60), s = t%60;
-    timer.innerText = m+":"+ (s<10?"0":"")+s;
-    t--;
-    if(t<0){clearInterval(i); alert("Done!");}
-  },1000);
-}
+        let general, redDot, scope2, scope4, dpi;
 
-function addStat(){
-  let k = Number(kills.value||0);
-  let h = Number(hs.value||0);
-  let arr = JSON.parse(localStorage.getItem("stats")||"[]");
-  arr.push({k,h,time:new Date().toLocaleString()});
-  localStorage.setItem("stats", JSON.stringify(arr));
-  showStats();
-}
+        // Logic based on RAM and Phone specs
+        if (ram <= 3) {
+            general = "100";
+            redDot = "98";
+            scope2 = "95";
+            scope4 = "90";
+            dpi = "450";
+        } else if (ram <= 6) {
+            general = "95";
+            redDot = "92";
+            scope2 = "88";
+            scope4 = "85";
+            dpi = "default";
+        } else {
+            general = "90";
+            redDot = "85";
+            scope2 = "80";
+            scope4 = "75";
+            dpi = "default";
+        }
 
-function showStats(){
-  let arr = JSON.parse(localStorage.getItem("stats")||"[]");
-  let html = "<table><tr><th>K</th><th>HS</th><th>Time</th></tr>";
-  arr.forEach(x=> html += `<tr><td>${x.k}</td><td>${x.h}</td><td>${x.time}</td></tr>`);
-  html += "</table>";
-  stats.innerHTML = html;
-}
-showStats();
+        // Display results
+        document.getElementById('gen').innerText = general;
+        document.getElementById('red').innerText = redDot;
+        document.getElementById('s2x').innerText = scope2;
+        document.getElementById('s4x').innerText = scope4;
+        document.getElementById('dpi').innerText = dpi;
+
+        resultDiv.style.display = 'block';
+    }
 </script>
 
 </body>
