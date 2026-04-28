@@ -3,206 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohasin X Sensi - Professional FF Settings</title>
+    <title>Mohasin X Sensi & Panel</title>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #050505;
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
+        }
+
+        .panel-container {
+            background: #111;
+            width: 320px;
+            border-radius: 15px;
+            border: 2px solid #ff4500;
+            box-shadow: 0 0 25px rgba(255, 69, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .panel-header {
+            background: #ff4500;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: black;
+        }
+
+        .panel-body {
             padding: 20px;
         }
 
-        .container {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px #ff4500;
-            width: 100%;
-            max-width: 450px;
+        .function-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #1a1a1a;
+            border-radius: 8px;
+        }
+
+        .function-name {
+            font-size: 14px;
+            color: #eee;
+        }
+
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 45px;
+            height: 22px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #444;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #ff4500;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(23px);
+        }
+
+        .status-log {
+            font-size: 11px;
+            color: #ffcc00;
             text-align: center;
-            border: 1px solid rgba(255, 69, 0, 0.3);
+            margin-top: 10px;
+            height: 15px;
         }
 
-        h1 {
-            color: #ff4500;
-            margin-bottom: 5px;
-            font-size: 26px;
-            letter-spacing: 2px;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13px;
-            color: #ddd;
-        }
-
-        select {
+        .inject-btn {
             width: 100%;
             padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #444;
-            background: #1a1a1a;
-            color: white;
-            outline: none;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #ff4500, #ff8c00);
-            color: white;
+            background: transparent;
+            border: 1px solid #ff4500;
+            color: #ff4500;
             font-weight: bold;
-            font-size: 18px;
             cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
             transition: 0.3s;
         }
 
-        button:hover {
-            transform: scale(1.02);
-        }
-
-        #result {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            display: none;
-            border: 1px solid #ff4500;
-        }
-
-        .sensi-item {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-            border-bottom: 1px solid #333;
-        }
-
-        .val {
-            color: #00ffcc;
-            font-weight: bold;
+        .inject-btn:hover {
+            background: #ff4500;
+            color: black;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>MOHASIN X SENSI</h1>
-    <p style="font-size: 10px; color: #888;">Auto Headshot Configuration Tool</p>
+<div class="panel-container">
+    <div class="panel-header">MOHASIN X PANEL V1</div>
     
-    <div class="input-group">
-        <label>Select Brand:</label>
-        <select id="brand" onchange="updateModels()">
-            <option value="">-- Choose Brand --</option>
-            <option value="samsung">Samsung</option>
-            <option value="xiaomi">Xiaomi / Poco</option>
-            <option value="vivo">Vivo</option>
-            <option value="oppo">Oppo</option>
-            <option value="realme">Realme</option>
-            <option value="infinix">Infinix</option>
-            <option value="apple">iPhone</option>
-            <option value="other">Other</option>
-        </select>
-    </div>
+    <div class="panel-body">
+        
+        <div class="function-item">
+            <span class="function-name">ESP Location</span>
+            <label class="switch">
+                <input type="checkbox" onchange="toggleHack('ESP Location', this)">
+                <span class="slider"></span>
+            </label>
+        </div>
 
-    <div class="input-group">
-        <label>Select Model:</label>
-        <select id="model">
-            <option value="">-- Select Brand First --</option>
-        </select>
-    </div>
+        <div class="function-item">
+            <span class="function-name">Hologram View</span>
+            <label class="switch">
+                <input type="checkbox" onchange="toggleHack('Hologram', this)">
+                <span class="slider"></span>
+            </label>
+        </div>
 
-    <div class="input-group">
-        <label>RAM:</label>
-        <select id="ram">
-            <option value="2">2GB</option>
-            <option value="4">4GB</option>
-            <option value="6">6GB</option>
-            <option value="8">8GB</option>
-            <option value="12">12GB+</option>
-        </select>
-    </div>
+        <div class="function-item">
+            <span class="function-name">90% Drag Headshot</span>
+            <label class="switch">
+                <input type="checkbox" onchange="toggleHack('Drag Headshot', this)">
+                <span class="slider"></span>
+            </label>
+        </div>
 
-    <button onclick="generateSensi()">GENERATE SETTINGS</button>
+        <div class="function-item">
+            <span class="function-name">Aim Lock (Legit)</span>
+            <label class="switch">
+                <input type="checkbox" onchange="toggleHack('Aim Lock', this)">
+                <span class="slider"></span>
+            </label>
+        </div>
 
-    <div id="result">
-        <h3 id="resName" style="color: #ff4500; margin-top: 0;"></h3>
-        <div class="sensi-item"><span>General:</span> <span class="val" id="gen">--</span></div>
-        <div class="sensi-item"><span>Red Dot:</span> <span class="val" id="red">--</span></div>
-        <div class="sensi-item"><span>2x Scope:</span> <span class="val" id="s2x">--</span></div>
-        <div class="sensi-item"><span>4x Scope:</span> <span class="val" id="s4x">--</span></div>
-        <div class="sensi-item"><span>DPI:</span> <span class="val" id="dpi">--</span></div>
+        <div id="status" class="status-log">Waiting for connection...</div>
+        
+        <button class="inject-btn" onclick="inject()">INJECT NOW</button>
     </div>
 </div>
 
 <script>
-    const models = {
-        samsung: ["Galaxy A54", "Galaxy S23", "Galaxy M34", "Galaxy A14", "Galaxy S21 Ultra"],
-        xiaomi: ["Redmi Note 12", "Poco X5 Pro", "Poco F5", "Redmi 12C", "Xiaomi 13 Pro"],
-        vivo: ["Vivo V27", "Vivo Y36", "Vivo T2x", "Vivo V25"],
-        oppo: ["Oppo Reno 10", "Oppo A78", "Oppo F23", "Oppo A17"],
-        realme: ["Realme 11 Pro", "Realme C55", "Realme GT Master", "Realme 10"],
-        infinix: ["Hot 30", "Note 30 Pro", "Zero Ultra", "Smart 7"],
-        apple: ["iPhone 11", "iPhone 12", "iPhone 13", "iPhone 14 Pro", "iPhone 15"],
-        other: ["Generic Model"]
-    };
-
-    function updateModels() {
-        const brand = document.getElementById('brand').value;
-        const modelSelect = document.getElementById('model');
-        modelSelect.innerHTML = "";
-
-        if (brand && models[brand]) {
-            models[brand].forEach(m => {
-                let opt = document.createElement('option');
-                opt.value = m;
-                opt.innerHTML = m;
-                modelSelect.appendChild(opt);
-            });
+    function toggleHack(name, element) {
+        let status = document.getElementById('status');
+        if (element.checked) {
+            status.innerText = name + " Activated!";
+            status.style.color = "#00ffcc";
         } else {
-            modelSelect.innerHTML = "<option>-- Select Brand First --</option>";
+            status.innerText = name + " Deactivated.";
+            status.style.color = "#ff4500";
         }
     }
 
-    function generateSensi() {
-        const ram = parseInt(document.getElementById('ram').value);
-        const selectedModel = document.getElementById('model').value;
+    function inject() {
+        let status = document.getElementById('status');
+        status.innerText = "Injecting Modules...";
+        status.style.color = "white";
         
-        if (!selectedModel) {
-            alert("Please select a model!");
-            return;
-        }
-
-        let gen, red, s2, s4, dpi;
-
-        if (ram <= 4) {
-            gen = "100"; red = "98"; s2 = "95"; s4 = "90"; dpi = "480";
-        } else if (ram <= 8) {
-            gen = "96"; red = "92"; s2 = "88"; s4 = "85"; dpi = "420";
-        } else {
-            gen = "92"; red = "85"; s2 = "80"; s4 = "75"; dpi = "Default";
-        }
-
-        document.getElementById('resName').innerText = selectedModel + " Config";
-        document.getElementById('gen').innerText = gen;
-        document.getElementById('red').innerText = red;
-        document.getElementById('s2x').innerText = s2;
-        document.getElementById('s4x').innerText = s4;
-        document.getElementById('dpi').innerText = dpi;
-        document.getElementById('result').style.display = "block";
+        setTimeout(() => {
+            status.innerText = "Bypass Anti-Ban: Success!";
+            alert("All Functions Injected Successfully!");
+        }, 2000);
     }
 </script>
 
