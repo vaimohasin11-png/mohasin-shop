@@ -1,106 +1,163 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohasin X Sensi & Panel</title>
+    <title>TCP Bot & Script Manager</title>
     <style>
+        :root {
+            --primary-color: #00d2ff;
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --text-color: #e94560;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #050505;
+            background-color: var(--bg-color);
             color: white;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
         }
 
-        .panel-container {
-            background: #111;
-            width: 320px;
-            border-radius: 15px;
-            border: 2px solid #ff4500;
-            box-shadow: 0 0 25px rgba(255, 69, 0, 0.5);
-            overflow: hidden;
-        }
-
-        .panel-header {
-            background: #ff4500;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 18px;
-            letter-spacing: 1px;
-            color: black;
-        }
-
-        .panel-body {
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: var(--card-bg);
             padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #0f3460;
         }
 
-        .function-item {
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .upload-section {
+            border: 2px dashed #0f3460;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .file-list {
+            margin-top: 20px;
+        }
+
+        .file-item {
+            background: #0f3460;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #1a1a1a;
-            border-radius: 8px;
         }
 
-        .function-name {
-            font-size: 14px;
-            color: #eee;
+        .file-info {
+            font-weight: bold;
         }
 
-        /* Toggle Switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 45px;
-            height: 22px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
+        .controls button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #444;
-            transition: .4s;
-            border-radius: 34px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-left: 5px;
         }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
+        .btn-start {
+            background-color: #28a745;
+            color: white;
         }
 
-        input:checked + .slider {
-            background-color: #ff4500;
+        .btn-start:hover { background-color: #218838; }
+
+        .btn-stop {
+            background-color: #dc3545;
+            color: white;
         }
 
-        input:checked + .slider:before {
-            transform: translateX(23px);
-        }
+        .btn-stop:hover { background-color: #c82333; }
 
-        .status-log {
+        .console {
+            background: black;
+            color: #00ff00;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            height: 150px;
+            overflow-y: auto;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 14px;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Script Control Panel</h2>
+
+    <div class="upload-section">
+        <p>Upload Python (.py) or Bash (.sh) Files</p>
+        <input type="file" id="fileInput">
+        <button style="padding: 5px 15px; cursor: pointer;">Upload</button>
+    </div>
+
+    <div class="file-list">
+        <div class="file-item">
+            <div class="file-info">
+                <span>freefire_bot.py</span>
+                <br><small style="color: #888;">Status: <span style="color: #ff4d4d;">Stopped</span></small>
+            </div>
+            <div class="controls">
+                <button class="btn-start">Start Bot</button>
+                <button class="btn-stop">Stop Bot</button>
+            </div>
+        </div>
+
+        <div class="file-item">
+            <div class="file-info">
+                <span>network_setup.sh</span>
+                <br><small style="color: #888;">Status: <span style="color: #00ff00;">Running</span></small>
+            </div>
+            <div class="controls">
+                <button class="btn-start">Start</button>
+                <button class="btn-stop">Stop</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="console" id="console">
+        [System]: Server online...<br>
+        [System]: Waiting for script execution...<br>
+    </div>
+</div>
+
+<script>
+    // এখানে আপনি জাভাস্ক্রিপ্ট দিয়ে বাটনের কাজগুলো সেট করতে পারবেন
+    document.querySelectorAll('.btn-start').forEach(button => {
+        button.onclick = function() {
+            const consoleDiv = document.getElementById('console');
+            consoleDiv.innerHTML += "[Action]: Starting script...<br>";
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        };
+    });
+</script>
+
+</body>
+</html>
             font-size: 11px;
             color: #ffcc00;
             text-align: center;
