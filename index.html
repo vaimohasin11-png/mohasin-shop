@@ -3,109 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fire File - MCU ZIP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>MOHASIN | EXPLOIT CENTER</title>
     <style>
+        /* Hacking Style Theme */
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0f172a;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
+            overflow: hidden; /* ব্যাকগ্রাউন্ড অ্যানিমেশনের জন্য */
         }
 
-        .download-card {
-            background: #1e293b;
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            margin: 100px auto;
+            max-width: 500px;
+            background: rgba(0, 0, 0, 0.85);
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
             text-align: center;
-            max-width: 400px;
-            width: 90%;
-            border: 1px solid #334155;
         }
 
-        .file-icon {
-            font-size: 60px;
-            margin-bottom: 15px;
-        }
-
-        h2 {
-            margin: 10px 0;
-            color: #38bdf8;
-            font-size: 22px;
-        }
-
-        .file-info {
-            background: #334155;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-size: 14px;
-            text-align: left;
-        }
-
-        .file-info p {
-            margin: 8px 0;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .file-info span {
-            color: #94a3b8;
-        }
-
-        .download-btn {
-            display: block;
-            background: linear-gradient(135deg, #0ea5e9, #2563eb);
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        h1 {
+            font-size: 24px;
             text-transform: uppercase;
+            letter-spacing: 5px;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 10px;
         }
 
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
-            background: linear-gradient(135deg, #2563eb, #0ea5e9);
-        }
-
-        .footer-text {
+        .btn {
+            display: inline-block;
             margin-top: 20px;
-            font-size: 11px;
-            color: #64748b;
-            letter-spacing: 1px;
+            padding: 15px 30px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 1px solid #fff;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #000;
+            color: #fff;
+            box-shadow: 0 0 15px #fff;
+        }
+
+        /* Admin Login */
+        .admin-section {
+            margin-top: 50px;
+            font-size: 10px;
+            color: #444;
+            cursor: pointer;
+        }
+
+        input {
+            background: #000;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            width: 90%;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #fff;
+        }
+
+        #admin-panel, #login-form {
+            display: none;
+            margin-top: 20px;
+            border-top: 1px dashed #444;
+            padding-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="download-card">
-        <div class="file-icon">📦</div>
-        <h2>MCU ZIP DOWNLOAD</h2>
-        <p style="color: #94a3b8; font-size: 13px;">Safe & Secure Download Link</p>
+    <!-- হ্যাকিং ব্যাকগ্রাউন্ড ম্যাট্রিক্স ইফেক্ট -->
+    <canvas id="matrix"></canvas>
 
-        <div class="file-info">
-            <p><span>File Name:</span> <strong>mcu.zip</strong></p>
-            <p><span>Format:</span> <strong>Compressed (ZIP)</strong></p>
-            <p><span>Source:</span> <strong>MediaFire</strong></p>
+    <div class="container">
+        <p style="font-size: 12px; color: #888;">[ SYSTEM STATUS: ONLINE ]</p>
+        <h1 id="file-title">PRIVATE EXPLOIT</h1>
+        
+        <div id="download-area">
+            <!-- তোমার মিডিয়াফায়ার লিঙ্ক এখানে অটো আপডেট হবে -->
+            <a href="তোমার_লিঙ্ক_এখানে" id="file-link" class="btn">INITIALIZE DOWNLOAD</a>
         </div>
 
-        <!-- আপনার মিডিয়াফায়ার লিংকটি এখানে যুক্ত করা হয়েছে -->
-        <a href="https://www.mediafire.com/file/j7ia4t025zdo1k1/mcu.zip/file" class="download-btn" target="_blank">
-            Download Now
-        </a>
+        <div class="admin-section" onclick="toggleLogin()">ACCESS SYSTEM CORE</div>
 
-        <p class="footer-text">Powered by MediaFire Cloud Storage</p>
+        <!-- লগইন ফর্ম -->
+        <div id="login-form">
+            <input type="text" id="user" placeholder="USERNAME">
+            <input type="password" id="pass" placeholder="PASSWORD">
+            <button class="btn" style="padding: 5px 15px; font-size: 12px;" onclick="doLogin()">LOGIN</button>
+        </div>
+
+        <!-- অ্যাডমিন কন্ট্রোল প্যানেল -->
+        <div id="admin-panel">
+            <h3>ROOT ACCESS GRANTED</h3>
+            <input type="text" id="new-name" placeholder="ফাইলের নাম">
+            <input type="text" id="new-url" placeholder="মিডিয়াফায়ার ইউআরএল">
+            <button class="btn" style="padding: 5px 15px; font-size: 12px;" onclick="updateSystem()">UPDATE DATABASE</button>
+        </div>
     </div>
 
+    <script>
+        // ব্যাকগ্রাউন্ড ম্যাট্রিক্স অ্যানিমেশন
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#fff"; // হোয়াইট হ্যাকিং কালার
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 50);
+
+        // লগইন এবং ফাইল আপডেট লজিক
+        const ADMIN_USER = "admin";
+        const ADMIN_PASS = "moha";
+
+        function toggleLogin() {
+            document.getElementById('login-form').style.display = 'block';
+        }
+
+        function doLogin() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            if (u === ADMIN_USER && p === ADMIN_PASS) {
+                alert("ACCESS GRANTED, WELCOME MOHASIN.");
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+            } else {
+                alert("ACCESS DENIED!");
+            }
+        }
+
+        function updateSystem() {
+            const name = document.getElementById('new-name').value;
+            const url = document.getElementById('new-url').value;
+            if (name) document.getElementById('file-title').innerText = name;
+            if (url) document.getElementById('file-link').href = url;
+            alert("SYSTEM UPDATED!");
+            document.getElementById('admin-panel').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
