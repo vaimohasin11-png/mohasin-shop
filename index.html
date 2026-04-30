@@ -3,255 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCP Bot & Script Manager</title>
+    <title>Free Fire File Download Center</title>
+    <!-- Google Fonts ব্যবহার করা হয়েছে সুন্দর দেখানোর জন্য -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #00d2ff;
-            --bg-color: #1a1a2e;
-            --card-bg: #16213e;
-            --text-color: #e94560;
-        }
-
+        /* CSS অংশ - ডিজাইন করার জন্য */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: white;
-            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            margin: 0;
         }
 
-        .container {
+        .download-card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 400px;
             width: 90%;
-            max-width: 800px;
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid #0f3460;
+            border: 1px solid #334155;
+        }
+
+        .file-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
         }
 
         h2 {
-            text-align: center;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .upload-section {
-            border: 2px dashed #0f3460;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            border-radius: 10px;
-        }
-
-        .file-list {
-            margin-top: 20px;
-        }
-
-        .file-item {
-            background: #0f3460;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            margin: 10px 0;
+            color: #38bdf8;
         }
 
         .file-info {
-            font-weight: bold;
-        }
-
-        .controls button {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            margin-left: 5px;
-        }
-
-        .btn-start {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .btn-start:hover { background-color: #218838; }
-
-        .btn-stop {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-stop:hover { background-color: #c82333; }
-
-        .console {
-            background: black;
-            color: #00ff00;
+            background: #334155;
             padding: 15px;
-            font-family: 'Courier New', Courier, monospace;
-            height: 150px;
-            overflow-y: auto;
-            border-radius: 5px;
-            margin-top: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
             font-size: 14px;
-            border: 1px solid #333;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h2>Script Control Panel</h2>
-
-    <div class="upload-section">
-        <p>Upload Python (.py) or Bash (.sh) Files</p>
-        <input type="file" id="fileInput">
-        <button style="padding: 5px 15px; cursor: pointer;">Upload</button>
-    </div>
-
-    <div class="file-list">
-        <div class="file-item">
-            <div class="file-info">
-                <span>freefire_bot.py</span>
-                <br><small style="color: #888;">Status: <span style="color: #ff4d4d;">Stopped</span></small>
-            </div>
-            <div class="controls">
-                <button class="btn-start">Start Bot</button>
-                <button class="btn-stop">Stop Bot</button>
-            </div>
-        </div>
-
-        <div class="file-item">
-            <div class="file-info">
-                <span>network_setup.sh</span>
-                <br><small style="color: #888;">Status: <span style="color: #00ff00;">Running</span></small>
-            </div>
-            <div class="controls">
-                <button class="btn-start">Start</button>
-                <button class="btn-stop">Stop</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="console" id="console">
-        [System]: Server online...<br>
-        [System]: Waiting for script execution...<br>
-    </div>
-</div>
-
-<script>
-    // এখানে আপনি জাভাস্ক্রিপ্ট দিয়ে বাটনের কাজগুলো সেট করতে পারবেন
-    document.querySelectorAll('.btn-start').forEach(button => {
-        button.onclick = function() {
-            const consoleDiv = document.getElementById('console');
-            consoleDiv.innerHTML += "[Action]: Starting script...<br>";
-            consoleDiv.scrollTop = consoleDiv.scrollHeight;
-        };
-    });
-</script>
-
-</body>
-</html>
-            font-size: 11px;
-            color: #ffcc00;
-            text-align: center;
-            margin-top: 10px;
-            height: 15px;
+            text-align: left;
         }
 
-        .inject-btn {
-            width: 100%;
-            padding: 12px;
-            background: transparent;
-            border: 1px solid #ff4500;
-            color: #ff4500;
+        .file-info p {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .file-info span {
+            color: #94a3b8;
+        }
+
+        /* ডাউনলোড বাটন স্টাইল */
+        .download-btn {
+            display: block;
+            background: linear-gradient(135deg, #0ea5e9, #2563eb);
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 12px;
             font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: 0.3s;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
 
-        .inject-btn:hover {
-            background: #ff4500;
-            color: black;
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #64748b;
         }
     </style>
 </head>
 <body>
 
-<div class="panel-container">
-    <div class="panel-header">MOHASIN X PANEL V1</div>
-    
-    <div class="panel-body">
-        
-        <div class="function-item">
-            <span class="function-name">ESP Location</span>
-            <label class="switch">
-                <input type="checkbox" onchange="toggleHack('ESP Location', this)">
-                <span class="slider"></span>
-            </label>
+    <div class="download-card">
+        <div class="file-icon">📁</div>
+        <h2>Free Fire Mod/Config</h2>
+        <p style="color: #94a3b8;">নিচের বাটন থেকে আপনার ফাইলটি ডাউনলোড করুন</p>
+
+        <!-- ফাইলের তথ্য টেবিল -->
+        <div class="file-info">
+            <p><span>File Name:</span> <strong>Free_Fire_Vip.zip</strong></p>
+            <p><span>Size:</span> <strong>15.5 MB</strong></p>
+            <p><span>Version:</span> <strong>Latest</strong></p>
+            <p><span>Uploader:</span> <strong>Your Name</strong></p>
         </div>
 
-        <div class="function-item">
-            <span class="function-name">Hologram View</span>
-            <label class="switch">
-                <input type="checkbox" onchange="toggleHack('Hologram', this)">
-                <span class="slider"></span>
-            </label>
-        </div>
+        <!-- ডাউনলোড লিংক এখানে বসান -->
+        <a href="আপনার_মিডিয়াফায়ার_লিঙ্ক_এখানে_দিন" class="download-btn" target="_blank">
+            DOWNLOAD NOW
+        </a>
 
-        <div class="function-item">
-            <span class="function-name">90% Drag Headshot</span>
-            <label class="switch">
-                <input type="checkbox" onchange="toggleHack('Drag Headshot', this)">
-                <span class="slider"></span>
-            </label>
-        </div>
-
-        <div class="function-item">
-            <span class="function-name">Aim Lock (Legit)</span>
-            <label class="switch">
-                <input type="checkbox" onchange="toggleHack('Aim Lock', this)">
-                <span class="slider"></span>
-            </label>
-        </div>
-
-        <div id="status" class="status-log">Waiting for connection...</div>
-        
-        <button class="inject-btn" onclick="inject()">INJECT NOW</button>
+        <p class="footer-text">Security Verified by MediaFire</p>
     </div>
-</div>
-
-<script>
-    function toggleHack(name, element) {
-        let status = document.getElementById('status');
-        if (element.checked) {
-            status.innerText = name + " Activated!";
-            status.style.color = "#00ffcc";
-        } else {
-            status.innerText = name + " Deactivated.";
-            status.style.color = "#ff4500";
-        }
-    }
-
-    function inject() {
-        let status = document.getElementById('status');
-        status.innerText = "Injecting Modules...";
-        status.style.color = "white";
-        
-        setTimeout(() => {
-            status.innerText = "Bypass Anti-Ban: Success!";
-            alert("All Functions Injected Successfully!");
-        }, 2000);
-    }
-</script>
 
 </body>
 </html>
