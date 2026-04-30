@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOHASIN | EXPLOIT CENTER</title>
+    <title>MOHASIN | MULTI-EXPLOIT PANEL</title>
     <style>
         /* Hacking Style Theme */
         body {
@@ -11,7 +11,7 @@
             color: #fff;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
-            overflow: hidden; /* ব্যাকগ্রাউন্ড অ্যানিমেশনের জন্য */
+            overflow-x: hidden;
         }
 
         canvas {
@@ -24,81 +24,341 @@
         .container {
             position: relative;
             z-index: 1;
-            margin: 100px auto;
-            max-width: 500px;
-            background: rgba(0, 0, 0, 0.85);
-            padding: 30px;
+            margin: 50px auto;
+            max-width: 700px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
             border: 1px solid #fff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
         }
 
         h1 {
-            font-size: 24px;
+            text-align: center;
+            font-size: 22px;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            border-bottom: 1px solid #fff;
+            letter-spacing: 4px;
+            border-bottom: 2px solid #fff;
             padding-bottom: 10px;
         }
 
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
+        /* File List Styling */
+        #file-container {
+            margin-top: 30px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #fff;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .file-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .file-info {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-dl {
+            padding: 8px 20px;
             background: #fff;
             color: #000;
             text-decoration: none;
+            font-size: 12px;
             font-weight: bold;
-            text-transform: uppercase;
+            border-radius: 20px;
             border: 1px solid #fff;
-            transition: 0.4s;
-            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .btn:hover {
+        .btn-dl:hover {
             background: #000;
             color: #fff;
-            box-shadow: 0 0 15px #fff;
+            box-shadow: 0 0 10px #fff;
         }
 
-        /* Admin Login */
-        .admin-section {
-            margin-top: 50px;
+        /* Admin Controls */
+        .admin-trigger {
+            text-align: center;
+            margin-top: 40px;
             font-size: 10px;
-            color: #444;
+            color: #333;
             cursor: pointer;
+        }
+
+        #login-box, #admin-panel {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 1px dashed #444;
         }
 
         input {
-            background: #000;
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #111;
             border: 1px solid #444;
             color: #fff;
-            padding: 10px;
-            margin: 5px 0;
-            width: 90%;
             outline: none;
         }
 
-        input:focus {
-            border-color: #fff;
+        .btn-admin {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            border: 1px solid #fff;
+            cursor: pointer;
         }
 
-        #admin-panel, #login-form {
-            display: none;
-            margin-top: 20px;
-            border-top: 1px dashed #444;
-            padding-top: 20px;
+        .btn-admin:hover {
+            background: #fff;
+            color: #000;
         }
     </style>
 </head>
 <body>
 
-    <!-- হ্যাকিং ব্যাকগ্রাউন্ড ম্যাট্রিক্স ইফেক্ট -->
     <canvas id="matrix"></canvas>
 
     <div class="container">
-        <p style="font-size: 12px; color: #888;">[ SYSTEM STATUS: ONLINE ]</p>
+        <p style="text-align:center; font-size: 10px; color: #666;">-- SECURE DATABASE ACCESS --</p>
+        <h1>MOHASIN FILES</h1>
+        
+        <!-- এখানে সব ফাইল জমা হবে -->
+        <div id="file-container">
+            <div class="file-item">
+                <span class="file-info">Welcome_Manual.pdf</span>
+                <a href="#" class="btn-dl">DOWNLOAD</a>
+            </div>
+        </div>
+
+        <div class="admin-trigger" onclick="toggleLogin()">[ SYSTEM CORE ]</div>
+
+        <div id="login-box">
+            <input type="text" id="user" placeholder="USER ID">
+            <input type="password" id="pass" placeholder="ACCESS KEY">
+            <button class="btn-admin" onclick="doLogin()">AUTHENTICATE</button>
+        </div>
+
+        <div id="admin-panel">
+            <h3 style="text-align:center; font-size: 14px;">ADD NEW RESOURCE</h3>
+            <input type="text" id="file-name" placeholder="ফাইলের নাম">
+            <input type="text" id="file-url" placeholder="মিডিয়াফায়ার লিঙ্ক">
+            <button class="btn-admin" onclick="addFile()">UPLOAD TO LIST</button>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const chars = "01";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#fff";
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 50);
+
+        // Admin Logic
+        const ADMIN_USER = "admin";
+        const ADMIN_PASS = "moha";
+
+        function toggleLogin() {
+            document.getElementById('login-box').style.display = 'block';
+        }
+
+        function doLogin() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            if (u === ADMIN_USER && p === ADMIN_PASS) {
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+                alert("ACCESS GRANTED.");
+            } else {
+                alert("INVALID CREDENTIALS.");
+            }
+        }
+
+        function addFile() {
+            const name = document.getElementById('file-name').value;
+            const url = document.getElementById('file-url').value;
+
+            if (name && url) {
+                const container = document.getElementById('file-container');
+                const newFile = document.createElement('div');
+                newFile.className = 'file-item';
+                newFile.innerHTML = `
+                    <span class="file-info">${name}</span>
+                    <a href="${url}" class="btn-dl" target="_blank">DOWNLOAD</a>
+                `;
+                container.appendChild(newFile);
+                
+                // Clear inputs
+                document.getElementById('file-name').value = "";
+                document.getElementById('file-url').value = "";
+                alert("FILE ADDED TO LIST.");
+            } else {
+                alert("PLEASE FILL ALL FIELDS.");
+            }
+        }
+    </script>
+</body>
+</html>
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #111;
+            border: 1px solid #444;
+            color: #fff;
+            outline: none;
+        }
+
+        .btn-admin {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            border: 1px solid #fff;
+            cursor: pointer;
+        }
+
+        .btn-admin:hover {
+            background: #fff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrix"></canvas>
+
+    <div class="container">
+        <p style="text-align:center; font-size: 10px; color: #666;">-- SECURE DATABASE ACCESS --</p>
+        <h1>MOHASIN FILES</h1>
+        
+        <!-- এখানে সব ফাইল জমা হবে -->
+        <div id="file-container">
+            <div class="file-item">
+                <span class="file-info">Welcome_Manual.pdf</span>
+                <a href="#" class="btn-dl">DOWNLOAD</a>
+            </div>
+        </div>
+
+        <div class="admin-trigger" onclick="toggleLogin()">[ SYSTEM CORE ]</div>
+
+        <div id="login-box">
+            <input type="text" id="user" placeholder="USER ID">
+            <input type="password" id="pass" placeholder="ACCESS KEY">
+            <button class="btn-admin" onclick="doLogin()">AUTHENTICATE</button>
+        </div>
+
+        <div id="admin-panel">
+            <h3 style="text-align:center; font-size: 14px;">ADD NEW RESOURCE</h3>
+            <input type="text" id="file-name" placeholder="ফাইলের নাম">
+            <input type="text" id="file-url" placeholder="মিডিয়াফায়ার লিঙ্ক">
+            <button class="btn-admin" onclick="addFile()">UPLOAD TO LIST</button>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const chars = "01";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#fff";
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 50);
+
+        // Admin Logic
+        const ADMIN_USER = "admin";
+        const ADMIN_PASS = "moha";
+
+        function toggleLogin() {
+            document.getElementById('login-box').style.display = 'block';
+        }
+
+        function doLogin() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            if (u === ADMIN_USER && p === ADMIN_PASS) {
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+                alert("ACCESS GRANTED.");
+            } else {
+                alert("INVALID CREDENTIALS.");
+            }
+        }
+
+        function addFile() {
+            const name = document.getElementById('file-name').value;
+            const url = document.getElementById('file-url').value;
+
+            if (name && url) {
+                const container = document.getElementById('file-container');
+                const newFile = document.createElement('div');
+                newFile.className = 'file-item';
+                newFile.innerHTML = `
+                    <span class="file-info">${name}</span>
+                    <a href="${url}" class="btn-dl" target="_blank">DOWNLOAD</a>
+                `;
+                container.appendChild(newFile);
+                
+                // Clear inputs
+                document.getElementById('file-name').value = "";
+                document.getElementById('file-url').value = "";
+                alert("FILE ADDED TO LIST.");
+            } else {
+                alert("PLEASE FILL ALL FIELDS.");
+            }
+        }
+    </script>
+</body>
+</html>        <p style="font-size: 12px; color: #888;">[ SYSTEM STATUS: ONLINE ]</p>
         <h1 id="file-title">PRIVATE EXPLOIT</h1>
         
         <div id="download-area">
